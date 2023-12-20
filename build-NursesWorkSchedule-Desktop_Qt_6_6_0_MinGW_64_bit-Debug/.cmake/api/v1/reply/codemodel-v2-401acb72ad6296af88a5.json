@@ -1,0 +1,61 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d8a846c5b3a66800e747.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "NursesWorkSchedule",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "NursesWorkSchedule::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-NursesWorkSchedule-Debug-1f66a5f541057314df21.json",
+					"name" : "NursesWorkSchedule",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug",
+		"source" : "G:/Nurses/NursesWorkSchedule/NursesWorkSchedule"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
