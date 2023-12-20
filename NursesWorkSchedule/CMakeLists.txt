@@ -5,7 +5,17 @@ project(NursesWorkSchedule LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(NursesWorkSchedule main.cpp)
+add_executable(
+    NursesWorkSchedule
+    csvfilereader.h
+    csvnursesreader.h
+    csvnursesreader.cpp
+    nurse.h
+    nurse.cpp
+    io.h
+    main.cpp
+    mainio.h mainio.cpp
+)
 
 include(GNUInstallDirs)
 install(TARGETS NursesWorkSchedule
