@@ -10,6 +10,7 @@ int main()
 {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
+    /*
     string tmp;
     MainIO terminal("(wprowadź polecenie):");
     while (tmp != "quit") {
@@ -21,5 +22,6 @@ int main()
     for (auto iterator{0}; iterator < result.size(); iterator++) {
         cout << result[iterator].getFirstname() << " " << result[iterator].getLastname() << endl;
     }
+    */
     return 0;
 }

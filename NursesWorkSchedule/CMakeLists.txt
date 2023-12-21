@@ -13,8 +13,10 @@ add_executable(
     nurse.h
     nurse.cpp
     io.h
+    mainio.h
+    mainio.cpp
     main.cpp
-    mainio.h mainio.cpp
+    shift.h shift.cpp
 )
 
 include(GNUInstallDirs)
