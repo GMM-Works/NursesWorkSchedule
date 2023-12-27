@@ -26,5 +26,5 @@ void CSVFileWriter::open(string fileName)
 
 void CSVFileWriter::writeLine(string text)
 {
-    m_output << text.c_str();
+    m_output << (text + '\n').c_str();
 }
