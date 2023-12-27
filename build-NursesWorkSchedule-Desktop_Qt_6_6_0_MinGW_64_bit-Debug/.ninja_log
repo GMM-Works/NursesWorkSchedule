@@ -1,15 +1,16 @@
 # ninja log v5
 8	446	7248032940000000	CMakeFiles/NursesWorkSchedule.dir/nurse.cpp.obj	d9f7801f6a194ff6
-8	484	7248052320000000	CMakeFiles/NursesWorkSchedule.dir/mainio.cpp.obj	de1e36364fdf66f4
-5	1302	7248884460000000	CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj	748a2de1bc26a82c
+3	518	7253769260000000	CMakeFiles/NursesWorkSchedule.dir/mainio.cpp.obj	de1e36364fdf66f4
+6	1431	7253794940000000	CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj	748a2de1bc26a82c
 2	317	7248884460000000	CMakeFiles/NursesWorkSchedule.dir/wholeplangenerator.cpp.obj	3e7e6fbfc91cfa92
 4	613	7248042940000000	CMakeFiles/NursesWorkSchedule.dir/csvnursesreader.cpp.obj	dbc737a607d3437f
-1303	1459	7248884480000000	NursesWorkSchedule.exe	cd2e719d22f6722b
+2	165	7253795140000000	NursesWorkSchedule.exe	3371e64d8f39c7af
 0	16	0	clean	577b940aee94fbd7
-2	397	7248893140000000	CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj	29f97e43679829f1
-397	601	7248893140000000	NursesWorkSchedule.exe	b7ff97ba835628d
-6	854	7253764520000000	CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj	29f97e43679829f1
-10	1444	7253764520000000	CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj	748a2de1bc26a82c
-1444	1736	7253764520000000	NursesWorkSchedule.exe	b7ff97ba835628d
-2	473	7253766640000000	CMakeFiles/NursesWorkSchedule.dir/mainio.cpp.obj	de1e36364fdf66f4
-474	673	7253766640000000	NursesWorkSchedule.exe	b7ff97ba835628d
+8	532	7253769260000000	CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj	29f97e43679829f1
+3	535	7253795060000000	CMakeFiles/NursesWorkSchedule.dir/csvfilereader.cpp.obj	bcb7308e42f4cdc1
+3	432	7253796720000000	CMakeFiles/NursesWorkSchedule.dir/csvfilereader.cpp.obj	bcb7308e42f4cdc1
+6	1219	7253796740000000	CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj	748a2de1bc26a82c
+1220	1367	7253796740000000	NursesWorkSchedule.exe	8eef1eea03409697
+4	585	7253796940000000	CMakeFiles/NursesWorkSchedule.dir/csvfilereader.cpp.obj	bcb7308e42f4cdc1
+8	1416	7253796940000000	CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj	748a2de1bc26a82c
+1417	1568	7253796940000000	NursesWorkSchedule.exe	8eef1eea03409697

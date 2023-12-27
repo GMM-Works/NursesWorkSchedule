@@ -1,15 +1,14 @@
-#pragma once
+#include "filereader.h"
 
-#include <string>
-#include <vector>
+const auto WRONG_CHARACTERS_COUNT{3};
 
-#include "nurse.h"
-
-using namespace std;
-
-class CSVFileReader
+class CSVFileReader : public FileReader
 {
 public:
-    virtual vector<Nurse> readFile(string fileName) const = 0;
+    CSVFileReader();
+    ~CSVFileReader();
+
+    void removeWrongCharacters(ifstream &fileStream);
+    vector<string> readFile(string fileName) override;
 };
 

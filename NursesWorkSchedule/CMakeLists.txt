@@ -7,16 +7,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(
     NursesWorkSchedule
+    filereader.h
     csvfilereader.h
-    csvnursesreader.h
-    csvnursesreader.cpp
+    csvfilereader.cpp
     nurse.h
     nurse.cpp
     io.h
     mainio.h
     mainio.cpp
+    shift.h
+    shift.cpp
     main.cpp
-    shift.h shift.cpp
 )
 
 include(GNUInstallDirs)

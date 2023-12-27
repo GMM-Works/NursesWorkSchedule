@@ -49,8 +49,8 @@ cmake_ninja_workdir = G$:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Des
 
 build cmake_object_order_depends_target_NursesWorkSchedule: phony || CMakeFiles/NursesWorkSchedule.dir
 
-build CMakeFiles/NursesWorkSchedule.dir/csvnursesreader.cpp.obj: CXX_COMPILER__NursesWorkSchedule_Debug G$:/Nurses/NursesWorkSchedule/NursesWorkSchedule/csvnursesreader.cpp || cmake_object_order_depends_target_NursesWorkSchedule
-  DEP_FILE = CMakeFiles\NursesWorkSchedule.dir\csvnursesreader.cpp.obj.d
+build CMakeFiles/NursesWorkSchedule.dir/csvfilereader.cpp.obj: CXX_COMPILER__NursesWorkSchedule_Debug G$:/Nurses/NursesWorkSchedule/NursesWorkSchedule/csvfilereader.cpp || cmake_object_order_depends_target_NursesWorkSchedule
+  DEP_FILE = CMakeFiles\NursesWorkSchedule.dir\csvfilereader.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\NursesWorkSchedule.dir
   OBJECT_FILE_DIR = CMakeFiles\NursesWorkSchedule.dir
@@ -67,14 +67,14 @@ build CMakeFiles/NursesWorkSchedule.dir/mainio.cpp.obj: CXX_COMPILER__NursesWork
   OBJECT_DIR = CMakeFiles\NursesWorkSchedule.dir
   OBJECT_FILE_DIR = CMakeFiles\NursesWorkSchedule.dir
 
-build CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj: CXX_COMPILER__NursesWorkSchedule_Debug G$:/Nurses/NursesWorkSchedule/NursesWorkSchedule/main.cpp || cmake_object_order_depends_target_NursesWorkSchedule
-  DEP_FILE = CMakeFiles\NursesWorkSchedule.dir\main.cpp.obj.d
+build CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj: CXX_COMPILER__NursesWorkSchedule_Debug G$:/Nurses/NursesWorkSchedule/NursesWorkSchedule/shift.cpp || cmake_object_order_depends_target_NursesWorkSchedule
+  DEP_FILE = CMakeFiles\NursesWorkSchedule.dir\shift.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\NursesWorkSchedule.dir
   OBJECT_FILE_DIR = CMakeFiles\NursesWorkSchedule.dir
 
-build CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj: CXX_COMPILER__NursesWorkSchedule_Debug G$:/Nurses/NursesWorkSchedule/NursesWorkSchedule/shift.cpp || cmake_object_order_depends_target_NursesWorkSchedule
-  DEP_FILE = CMakeFiles\NursesWorkSchedule.dir\shift.cpp.obj.d
+build CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj: CXX_COMPILER__NursesWorkSchedule_Debug G$:/Nurses/NursesWorkSchedule/NursesWorkSchedule/main.cpp || cmake_object_order_depends_target_NursesWorkSchedule
+  DEP_FILE = CMakeFiles\NursesWorkSchedule.dir\main.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\NursesWorkSchedule.dir
   OBJECT_FILE_DIR = CMakeFiles\NursesWorkSchedule.dir
@@ -87,7 +87,7 @@ build CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj: CXX_COMPILER__NursesWorkS
 #############################################
 # Link the executable NursesWorkSchedule.exe
 
-build NursesWorkSchedule.exe: CXX_EXECUTABLE_LINKER__NursesWorkSchedule_Debug CMakeFiles/NursesWorkSchedule.dir/csvnursesreader.cpp.obj CMakeFiles/NursesWorkSchedule.dir/nurse.cpp.obj CMakeFiles/NursesWorkSchedule.dir/mainio.cpp.obj CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj
+build NursesWorkSchedule.exe: CXX_EXECUTABLE_LINKER__NursesWorkSchedule_Debug CMakeFiles/NursesWorkSchedule.dir/csvfilereader.cpp.obj CMakeFiles/NursesWorkSchedule.dir/nurse.cpp.obj CMakeFiles/NursesWorkSchedule.dir/mainio.cpp.obj CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\NursesWorkSchedule.dir

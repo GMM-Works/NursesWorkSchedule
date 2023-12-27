@@ -1,5 +1,5 @@
 #include "windows.h"
-#include "csvnursesreader.h"
+#include "csvfilereader.h"
 #include "mainio.h"
 
 #include <iostream>
@@ -16,10 +16,20 @@ int main()
         terminal.printPrefix();
         tmp = terminal.getCommand();
     }
+
+    CSVFileReader reader;
+    vector<string> result = reader.readFile("pielegniarki.csv");
+    for (auto iterator{0}; iterator < result.size(); iterator++) {
+        cout << result[iterator] << endl;
+    }
+
+    /*
     CSVNursesReader reader;
     vector<Nurse> result = reader.readFile("pielegniarki.csv");
     for (auto iterator{0}; iterator < result.size(); iterator++) {
         cout << result[iterator].getFirstname() << " " << result[iterator].getLastname() << endl;
     }
+    */
+    getchar(); getchar();
     return 0;
 }
