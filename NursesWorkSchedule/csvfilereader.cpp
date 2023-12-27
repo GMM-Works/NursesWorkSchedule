@@ -11,12 +11,12 @@ CSVFileReader::~CSVFileReader()
 {
 }
 
-void CSVFileReader::removeWrongCharacters(ifstream &fileStream)
+void CSVFileReader::removeWrongCharacters(ifstream &fileStream) const
 {
         fileStream.ignore(WRONG_CHARACTERS_COUNT);
 }
 
-vector<string> CSVFileReader::readFile(string fileName)
+vector<string> CSVFileReader::readFile(string fileName) const
 {
     ifstream csvFile(fileName);
     vector<string> receivedLines;

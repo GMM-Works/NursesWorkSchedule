@@ -8,5 +8,5 @@ using namespace std;
 class FileReader
 {
 public:
-    virtual vector<string> readFile(string fileName) = 0;
+    virtual vector<string> readFile(string fileName) const = 0;
 };

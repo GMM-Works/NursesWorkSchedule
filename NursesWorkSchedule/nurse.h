@@ -14,7 +14,7 @@ public:
     string getLastname() const;
 
 private:
-    string m_firstname;
-    string m_lastname;
+    const string m_firstname;
+    const string m_lastname;
 };
 
