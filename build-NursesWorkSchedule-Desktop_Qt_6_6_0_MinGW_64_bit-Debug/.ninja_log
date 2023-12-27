@@ -8,3 +8,8 @@
 0	16	0	clean	577b940aee94fbd7
 2	397	7248893140000000	CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj	29f97e43679829f1
 397	601	7248893140000000	NursesWorkSchedule.exe	b7ff97ba835628d
+6	854	7253764520000000	CMakeFiles/NursesWorkSchedule.dir/shift.cpp.obj	29f97e43679829f1
+10	1444	7253764520000000	CMakeFiles/NursesWorkSchedule.dir/main.cpp.obj	748a2de1bc26a82c
+1444	1736	7253764520000000	NursesWorkSchedule.exe	b7ff97ba835628d
+2	473	7253766640000000	CMakeFiles/NursesWorkSchedule.dir/mainio.cpp.obj	de1e36364fdf66f4
+474	673	7253766640000000	NursesWorkSchedule.exe	b7ff97ba835628d

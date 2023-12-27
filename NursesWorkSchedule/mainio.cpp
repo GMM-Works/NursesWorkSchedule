@@ -19,6 +19,6 @@ void MainIO::printPrefix() const
 string MainIO::getCommand() const
 {
     string receivedCommand;
-    cin >> receivedCommand;
+    getline(cin, receivedCommand);
     return receivedCommand;
 }
