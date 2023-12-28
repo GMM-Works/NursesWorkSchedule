@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/NursesWorkScheduleTest[1]_tests.cmake")
-  include("C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/NursesWorkScheduleTest[1]_tests.cmake")
-else()
-  add_test(NursesWorkScheduleTest_NOT_BUILT NursesWorkScheduleTest_NOT_BUILT)
-endif()
