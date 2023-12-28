@@ -19,7 +19,7 @@ jobs:
       
     - name: Build
       working-directory: ${{runner.workspace}}/build
-      run: cmake --build test.cpp
+      run: cmake --build .
       
     - name: Test
       working-directory: ${{runner.workspace}}/build
