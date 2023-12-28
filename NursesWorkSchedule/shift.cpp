@@ -1,7 +1,6 @@
 #include "shift.h"
 
-Shift::Shift(vector<string> workers)
-    : m_workers(workers)
+Shift::Shift()
 {
 }
 
@@ -9,29 +8,29 @@ Shift::~Shift()
 {
 }
 
-vector<string> Shift::getWorkers() const
+vector<Nurse> Shift::getNurses() const
 {
-    return m_workers;
+    return m_nurses;
 }
 
-void Shift::addWorker(string name)
+int Shift::indexOf(Nurse nurse) const
 {
-    m_workers.push_back(name);
-}
-
-int Shift::indexOf(string name) const
-{
-    for (auto iterator{0}; iterator < m_workers.size(); ++iterator) {
-        if (m_workers[iterator] == name) {
+    for (auto iterator{0}; iterator < m_nurses.size(); ++iterator) {
+        if (m_nurses[iterator].getFirstname() == nurse.getFirstname() && m_nurses[iterator].getLastname() == nurse.getLastname()) {
             return iterator;
         }
     }
     return -1;
 }
 
+void Shift::addNurse(Nurse nurse)
+{
+    m_nurses.push_back(nurse);
+}
+
 void Shift::removeAt(int index)
 {
-    for (auto iterator{index}; iterator < m_workers.size() - 1; ++iterator) {
-        m_workers[iterator] = m_workers[iterator + 1];
+    for (auto iterator{index}; iterator < m_nurses.size() - 1; ++iterator) {
+        m_nurses[iterator] = m_nurses[iterator + 1];
     }
 }

@@ -12,9 +12,11 @@ public:
 
     string getFirstname() const;
     string getLastname() const;
+    void setFirstname(string name);
+    void setLastname(string name);
 
 private:
-    const string m_firstname;
-    const string m_lastname;
+    string m_firstname;
+    string m_lastname;
 };
 

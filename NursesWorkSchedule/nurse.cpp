@@ -19,3 +19,13 @@ string Nurse::getLastname() const
 {
     return m_lastname;
 }
+
+void Nurse::setFirstname(string name)
+{
+    this->m_firstname = name;
+}
+
+void Nurse::setLastname(string name)
+{
+    this->m_lastname = name;
+}

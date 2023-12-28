@@ -2,6 +2,8 @@
 
 #include "parser.h"
 
+const char SEPARATING_CHARACTER{';'};
+
 class CSVParser : public Parser
 {
 public:

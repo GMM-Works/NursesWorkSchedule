@@ -1,5 +1,7 @@
 #pragma once
 
+#include "nurse.h"
+
 #include <string>
 #include <vector>
 
@@ -8,14 +10,14 @@ using namespace std;
 class Shift
 {
 public:
-    Shift(vector<string> workers);
+    Shift();
     ~Shift();
 
-    vector<string> getWorkers() const;
-    void addWorker(string name);
-    int indexOf(string name) const;
+    vector<Nurse> getNurses() const;
+    int indexOf(Nurse nurse) const;
+    void addNurse(Nurse nurse);
     void removeAt(int index);
 
 private:
-    vector<string> m_workers;
+    vector<Nurse> m_nurses;
 };

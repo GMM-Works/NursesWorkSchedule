@@ -20,10 +20,18 @@ add_executable(
     mainio.cpp
     shift.h
     shift.cpp
-    main.cpp
-    csvnursesparser.h csvnursesparser.cpp
+    csvnursesparser.h
+    csvnursesparser.cpp
     filewriter.h
-    csvfilewriter.h csvfilewriter.cpp
+    csvfilewriter.h
+    csvfilewriter.cpp
+    schedulecreator.h
+    schedulecreator.cpp
+    csvholidaysparser.h
+    csvholidaysparser.cpp
+    holiday.h
+    holiday.cpp
+    main.cpp
 )
 
 include(GNUInstallDirs)

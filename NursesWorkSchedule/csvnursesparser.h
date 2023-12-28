@@ -5,10 +5,6 @@
 
 #include <vector>
 
-using namespace std;
-
-const char SEPARATING_CHARACTER{';'};
-
 class CSVNursesParser
 {
 public:
