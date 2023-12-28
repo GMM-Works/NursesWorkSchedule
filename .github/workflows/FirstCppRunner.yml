@@ -1,4 +1,4 @@
-name: Example test
+                             name: Example test
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       
     - name: Build
       working-directory: ${{runner.workspace}}/build
-      run: cmake --build .
+      run: cmake --build test.cpp
       
     - name: Test
       working-directory: ${{runner.workspace}}/build
