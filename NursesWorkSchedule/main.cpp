@@ -10,8 +10,8 @@
 
 int main()
 {
-    SetConsoleCP(65001);
-    SetConsoleOutputCP(65001);
+    //SetConsoleCP(65001);
+    //SetConsoleOutputCP(65001);
 
     string tmp;
     MainIO terminal("(wprowadź polecenie):");
