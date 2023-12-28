@@ -1,0 +1,21 @@
+# ninja log v5
+1	27	7254496226104566	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	34b102dc0ec5266c
+1	27	7254496226104566	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	34b102dc0ec5266c
+27	1911	7254496244944274	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	8f06a73c79c4c6eb
+27	1911	7254496244944274	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	8f06a73c79c4c6eb
+1912	1942	7254496245263207	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	df1ae136c7c6eb11
+1912	1942	7254496245263207	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	df1ae136c7c6eb11
+1942	1968	7254496245522340	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	c15bb4e9105b956e
+1942	1968	7254496245522340	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	c15bb4e9105b956e
+1968	1995	7254496245791440	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	5c5d190ca169676a
+1968	1995	7254496245791440	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	5c5d190ca169676a
+1995	2021	7254496246050573	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	90674bd6f822ac03
+1995	2021	7254496246050573	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	90674bd6f822ac03
+2021	2047	7254496246299739	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	9cea0d20b8a387a7
+2021	2047	7254496246299739	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	9cea0d20b8a387a7
+2047	2072	7254496246568837	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	debbeb039598a44a
+2047	2072	7254496246568837	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	debbeb039598a44a
+2073	2109	7254496246927638	CMakeFiles/googletest-populate-complete	d711e9dce6186f9
+2073	2109	7254496246927638	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	d711e9dce6186f9
+2073	2109	7254496246927638	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	d711e9dce6186f9
+2073	2109	7254496246927638	C:/Users/ASUS/Desktop/nurses/build-NursesWorkSchedule-Desktop_Qt-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	d711e9dce6186f9
