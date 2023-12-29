@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "nurseInterface.h"
+
 using namespace std;
 
 class Nurse

@@ -38,7 +38,33 @@ add_executable(
 
 add_executable(
     NursesWorkScheduleTest
-    test.cpp
+    parser.h
+    csvparser.h
+    csvparser.cpp
+    filereader.h
+    csvfilereader.h
+    csvfilereader.cpp
+    nurse.h
+    nurse.cpp
+    holiday.h
+    holiday.cpp
+    io.h
+    mainio.h
+    mainio.cpp
+    shift.h
+    shift.cpp
+    csvnursesparser.h
+    csvnursesparser.cpp
+    csvholidaysparser.h
+    csvholidaysparser.cpp
+    filewriter.h
+    csvfilewriter.h
+    csvfilewriter.cpp
+    schedulecreator.h
+    schedulecreator.cpp
+    currentdate.h
+    currentdate.cpp
+    currentDateTest.cpp
 )
 
 include(GNUInstallDirs)

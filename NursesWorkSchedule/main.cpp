@@ -1,15 +1,14 @@
-#include "windows.h"
+//#include "windows.h"
 #include "schedulecreator.h"
 #include "mainio.h"
-
 #include <iostream>
 
 #pragma execution_character_set( "utf-8" )
 
 int main()
 {
-    SetConsoleCP(65001);
-    SetConsoleOutputCP(65001);
+//    SetConsoleCP(65001);
+//    SetConsoleOutputCP(65001);
 
 //    string tmp;
 //    MainIO terminal("(wprowadź polecenie):");
