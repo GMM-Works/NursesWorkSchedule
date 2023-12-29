@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test.rule"
+		},
+		{
+			"file" : "G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"googletest-populate"
+		],
+		"name" : "googletest-populate"
+	}
+}

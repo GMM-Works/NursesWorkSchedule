@@ -15,15 +15,25 @@ add_executable(
     csvfilereader.cpp
     nurse.h
     nurse.cpp
+    holiday.h
+    holiday.cpp
     io.h
     mainio.h
     mainio.cpp
     shift.h
     shift.cpp
-    main.cpp
-    csvnursesparser.h csvnursesparser.cpp
+    csvnursesparser.h
+    csvnursesparser.cpp
+    csvholidaysparser.h
+    csvholidaysparser.cpp
     filewriter.h
-    csvfilewriter.h csvfilewriter.cpp
+    csvfilewriter.h
+    csvfilewriter.cpp
+    schedulecreator.h
+    schedulecreator.cpp
+    currentdate.h
+    currentdate.cpp
+    main.cpp
 )
 
 add_executable(

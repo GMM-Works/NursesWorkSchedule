@@ -1,0 +1,3 @@
+G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/CMakeFiles/NursesWorkSchedule.dir
+G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+G:/Nurses/NursesWorkSchedule/build-NursesWorkSchedule-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir

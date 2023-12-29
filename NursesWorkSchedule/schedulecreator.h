@@ -3,6 +3,7 @@
 #include "csvnursesparser.h"
 #include "csvholidaysparser.h"
 #include "shift.h"
+#include "currentdate.h"
 
 #include <memory>
 
@@ -12,7 +13,10 @@ public:
     scheduleCreator();
     ~scheduleCreator();
 
-    void generatePlan(string CSVNursesFile, string CSVHolidaysFile);
+    void readNurses(string CSVNursesFile);
+    void readHolidays(string CSVHolidaysFile);
+    void getDate();
+    void generatePlan();
 
 private:
     vector<Holiday> m_holidays;
@@ -20,6 +24,7 @@ private:
     CSVHolidaysParser m_holidaysParser;
     CSVFileReader m_reader;
     CSVNursesParser m_nursesParser;
+    CurrentDate dateContainer;
     Shift m_shifts[30];
 };
 

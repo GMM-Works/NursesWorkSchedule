@@ -21,7 +21,7 @@ void CSVFileWriter::open(string fileName)
     if (m_output.is_open()) {
         m_output.close();
     }
-    m_output.open(fileName, ofstream::out);
+    m_output.open(fileName);
 }
 
 void CSVFileWriter::writeLine(string text)
