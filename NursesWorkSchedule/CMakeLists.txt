@@ -33,6 +33,9 @@ add_executable(
     schedulecreator.cpp
     currentdate.h
     currentdate.cpp
+    csvstaffparser.h
+    csvstaffparser.cpp
+    staff.h staff.cpp
     main.cpp
 )
 
