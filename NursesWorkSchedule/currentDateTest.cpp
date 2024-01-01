@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "currentdate.h"
 #include <ctime>
-#include <string>
 
 class CurrentDateFixtureTests : public ::testing::Test
 {
