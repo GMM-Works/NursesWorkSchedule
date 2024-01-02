@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "currentdate.h"
 #include <ctime>
-#include <string>
 
 class CurrentDateFixtureTests : public ::testing::Test
 {
@@ -20,5 +19,3 @@ TEST_F (CurrentDateFixtureTests, CheckingEqualityOfCurentDate){
     EXPECT_EQ(m_month,currentDate.getMonth());
     EXPECT_EQ(m_year, currentDate.getYear());
 };
-
-//GTEST_API_;

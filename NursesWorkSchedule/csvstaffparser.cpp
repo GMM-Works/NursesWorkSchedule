@@ -1,4 +1,4 @@
-#include "CSVStaffParser.h"
+#include "csvstaffparser.h"
 
 CSVStaffParser::CSVStaffParser()
     : m_parser(SEPARATING_CHARACTER)
