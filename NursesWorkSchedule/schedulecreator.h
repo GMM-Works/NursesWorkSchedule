@@ -8,6 +8,7 @@
 #include <memory>
 
 const int DAYS_OF_MONTH[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+const auto DAYS_OF_WEEK{7};
 
 class scheduleCreator
 {
@@ -18,10 +19,10 @@ public:
     void readNurses(string CSVNursesFile);
     void readHolidays(string CSVHolidaysFile);
     void readStaff(string CSVHolidaysFile);
-    void getDate();
     void generatePlan();
 
 private:
+    void getDate();
     bool isYearLeap(int year) const;
     int dayOfPlan(int day, int month, int year) const;
 
@@ -34,6 +35,7 @@ private:
     CSVStaffParser m_staffParser;
     CSVFileReader m_reader;
     CurrentDate dateContainer;
-    Shift m_shifts[30];
+    unique_ptr<Shift[]> shifts;
+    int m_startDayOfWeek;
 };
 

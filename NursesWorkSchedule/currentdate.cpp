@@ -12,10 +12,11 @@ CurrentDate::~CurrentDate()
 void CurrentDate::setDate()
 {
     time_t t = std::time(0);
-    struct tm *aTime = localtime(&t);
-    m_day = aTime->tm_mday;
-    m_month = aTime->tm_mon + 1;
-    m_year = aTime->tm_year + 1900;
+    struct tm *currentTime = localtime(&t);
+    m_day = currentTime->tm_mday;
+    m_month = currentTime->tm_mon + 1;
+    m_year = currentTime->tm_year + 1900;
+    m_dayOfWeek = currentTime->tm_wday + 1;
 }
 
 int CurrentDate::getDay() const
@@ -31,4 +32,9 @@ int CurrentDate::getMonth() const
 int CurrentDate::getYear() const
 {
     return m_year;
+}
+
+int CurrentDate::getDayOfWeek() const
+{
+    return m_dayOfWeek;
 }
