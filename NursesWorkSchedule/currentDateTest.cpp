@@ -19,5 +19,3 @@ TEST_F (CurrentDateFixtureTests, CheckingEqualityOfCurentDate){
     EXPECT_EQ(m_month,currentDate.getMonth());
     EXPECT_EQ(m_year, currentDate.getYear());
 };
-
-//GTEST_API_;
