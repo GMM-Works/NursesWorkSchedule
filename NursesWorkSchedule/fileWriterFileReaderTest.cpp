@@ -14,15 +14,12 @@ protected:
     CSVNursesParser nurseParser;
 };
 
-TEST_F(CSVFileFixtureTests , FirstWriterTest){
+TEST_F(CSVFileFixtureTests , FirstReaderTest){
     Nurse firstNurseTest = Nurse("Katarzyna","Kawka");
     fileWriter.open("nursesWriteFile.csv");
     string text = "   "+firstNurseTest.getFirstname() + ";" + firstNurseTest.getLastname() ;
     fileWriter.writeLine(text);
-}
-
-TEST_F(CSVFileFixtureTests , FirstReaderTest){
-    Nurse firstNurseTest = Nurse("Katarzyna","Kawka");
+    fileWriter.close();
     vector<Nurse> testedNurse = nurseParser.parseNurses(fileReader.readFile("nursesWriteFile.csv"));
     ASSERT_EQ(1,testedNurse.size());
     EXPECT_EQ(firstNurseTest.getFirstname(), testedNurse[0].getFirstname() );

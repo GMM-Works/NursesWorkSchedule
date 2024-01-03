@@ -77,6 +77,8 @@ add_executable(
     currentDateTest.cpp
     fileWriterFileReaderTest.cpp
     fileReaderTest.cpp
+    holidayParserTest.cpp
+    staffParserTest.cpp
 )
 
 include(GNUInstallDirs)

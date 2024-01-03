@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+
 class CSVFileReaderFixtureTests : public ::testing::Test
  {
  protected:
@@ -14,13 +15,12 @@ class CSVFileReaderFixtureTests : public ::testing::Test
      CSVNursesParser csvNureParser;
      vector<Nurse> csvToTested;
  };
- TEST_F(CSVFileReaderFixtureTests , AddingDataToTest){
-     fileWriter.open("nursesfiletest.csv");
-     string text = "   Michal;Paszkiesz\nKamil;Ogorek\nKonrad;Smola\nEmil;Kasza\nAgnieszka;Chylinska";
-     fileWriter.writeLine(text);
- }
 
 TEST_F(CSVFileReaderFixtureTests , FirstFileReaderTest){
+    fileWriter.open("nursesfiletest.csv");
+    string text = "   Michal;Paszkiesz\nKamil;Ogorek\nKonrad;Smola\nEmil;Kasza\nAgnieszka;Chylinska";
+    fileWriter.writeLine(text);
+    fileWriter.close();
     csvToTested = csvNureParser.parseNurses(fileReader.readFile("nursesfiletest.csv"));
     ASSERT_EQ(5,csvToTested.size());
     EXPECT_EQ(csvToTested[0].getFirstname(),"Michal");

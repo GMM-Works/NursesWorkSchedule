@@ -24,6 +24,13 @@ void CSVFileWriter::open(string fileName)
     m_output.open(fileName);
 }
 
+void CSVFileWriter::close()
+{
+    if (m_output.is_open()) {
+        m_output.close();
+    }
+}
+
 void CSVFileWriter::writeLine(string text)
 {
     m_output << (text + '\n').c_str();

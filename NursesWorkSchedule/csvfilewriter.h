@@ -11,6 +11,7 @@ public:
     CSVFileWriter(string fileName);
     ~CSVFileWriter();
 
+    void close() override;
     void open(string fileName) override;
     void writeLine(string text) override;
 
