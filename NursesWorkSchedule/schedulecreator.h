@@ -19,7 +19,7 @@ public:
     void readNurses(string CSVNursesFile);
     void readHolidays(string CSVHolidaysFile);
     void readStaff(string CSVHolidaysFile);
-    void generatePlan();
+//    void generatePlan();
 
 private:
     void getDate();
