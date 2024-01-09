@@ -1,4 +1,5 @@
 #include "csvfilereader.h"
+#include "csvfilewriter.h"
 #include "csvnursesparser.h"
 #include "csvholidaysparser.h"
 #include "csvstaffparser.h"
@@ -9,17 +10,18 @@
 
 const int DAYS_OF_MONTH[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 const auto DAYS_OF_WEEK{7};
+const auto DEFAULT_PERSONS_FOR_SHIFT{2};
 
-class scheduleCreator
+class ScheduleCreator
 {
 public:
-    scheduleCreator();
-    ~scheduleCreator();
+    ScheduleCreator();
+    ~ScheduleCreator();
 
     void readNurses(string CSVNursesFile);
     void readHolidays(string CSVHolidaysFile);
     void readStaff(string CSVHolidaysFile);
-//    void generatePlan();
+    void generatePlan(string outputFileName);
 
 private:
     void getDate();
@@ -34,8 +36,10 @@ private:
     CSVNursesParser m_nursesParser;
     CSVStaffParser m_staffParser;
     CSVFileReader m_reader;
-    CurrentDate dateContainer;
-    unique_ptr<Shift[]> shifts;
+    CSVFileWriter m_writer;
+    CurrentDate m_dateContainer;
+    vector<Shift> m_dayShifts;
+    vector<Shift> m_nightShifts;
     int m_startDayOfWeek;
 };
 

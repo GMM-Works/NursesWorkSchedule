@@ -10,7 +10,7 @@ public:
     CSVFileReader();
     ~CSVFileReader();
 
-    void removeWrongCharacters(ifstream &fileStream) const;
+    string removeWrongCharacters(string line) const;
     vector<string> readFile(string fileName) const override;
 };
 

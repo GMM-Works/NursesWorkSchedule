@@ -11,20 +11,28 @@ CSVFileReader::~CSVFileReader()
 {
 }
 
-void CSVFileReader::removeWrongCharacters(ifstream &fileStream) const
+string CSVFileReader::removeWrongCharacters(string line) const
 {
-    fileStream.ignore(WRONG_CHARACTERS_COUNT);
+    string tmp;
+    for (auto iterator{0}; iterator < line.length(); iterator++) {
+        if (line[iterator] > 47) {
+            tmp.push_back(line[iterator]);
+        }
+    }
+    return tmp;
 }
 
 vector<string> CSVFileReader::readFile(string fileName) const
 {
     ifstream csvFile(fileName);
     vector<string> receivedLines;
-    removeWrongCharacters(csvFile);
     string tmp;
     receivedLines.clear();
     while (getline(csvFile, tmp)) {
-        receivedLines.push_back(tmp);
+        string correctedLine{removeWrongCharacters(tmp)};
+        if (correctedLine.length() != 0) {
+        receivedLines.push_back(correctedLine);
+        }
     }
     csvFile.close();
     return receivedLines;
