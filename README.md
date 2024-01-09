@@ -73,7 +73,7 @@
 ## Harmonogram
 - Mateusz Smolarek:
     1. Zrobić README.md :white_check_mark:
-    2. Zmienić Kod Runner
+    2. Zmienić Kod Runner :white_check_mark:
     3. Wstawić testy w podfoldery
     4. Dołożyć kolejne testy
 - Michał Borzuchowski:
