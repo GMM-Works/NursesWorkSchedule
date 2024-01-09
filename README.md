@@ -74,12 +74,12 @@
 - Mateusz Smolarek:
     1. Zrobić README.md :white_check_mark:
     2. Zmienić Kod Runner :white_check_mark:
-    3. Wstawić testy w podfoldery
-    4. Dołożyć kolejne testy
-- Michał Borzuchowski:
-    1. Wysyłanie plików
-    2. Algorytm
     3. Input/Output
+    4. Dołożyć kolejne testy
+    5. Wstawić testy w podfoldery
+- Michał Borzuchowski:
+    1. Algorytm
+    2. Wysyłanie plików
 - Spotkania
-    - 09.01.2024
+    - 09.01.2024 :white_check_mark:
     - 11.01.2024
