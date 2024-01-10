@@ -7,30 +7,22 @@
 
 int main()
 {
-    //    SetConsoleCP(65001);
-    //    SetConsoleOutputCP(65001);
-
-    //    string tmp;
-    //    MainIO terminal("(wprowadź polecenie):");
-    //    while (tmp != "quit") {
-    //        terminal.printPrefix();
-    //        tmp = terminal.getCommand();
-    //    }
-
-    //    CSVFileReader reader;
-    //    vector<string> result = reader.readFile("pielegniarki.csv");
-
-    //    CSVNursesParser parser;
-    //    vector<Nurse> result2 = parser.parseNurses(result);
-
-    //    CSVFileWriter writer;
-    //    writer.open("something.csv");
-
-    //    for (auto iterator{0}; iterator < result2.size(); ++iterator) {
-    //        writer.writeLine(result2[iterator].getFirstname() + ";" + result2[iterator].getLastname());
-    //    }
-
-
-    getchar(); getchar();
+    MainIO procedure ("1. Generuj plan\n2. Zapisz plan dla pracownika\n3. Zapisz plan dla zarzadu\n4. Wylacz system\nWprowadz zadanie: ");
+    while(true){
+        procedure.printPrefix();
+        string tmp = procedure.getCommand();
+        if(tmp == "1"){
+            // GeneratePlan
+        }
+        else if(tmp == "2"){
+            // FileWrite() GeneratePlan for worker
+        }
+        else if(tmp == "3"){
+            // FileWrite() GeneratePlan for all
+        }
+        else if(tmp == "4"){
+            break;
+        }
+    }
     return 0;
 }
