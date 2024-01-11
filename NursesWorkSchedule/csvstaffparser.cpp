@@ -18,7 +18,7 @@ vector<Staff> CSVStaffParser::parseStaff(vector<string> lines) const
         int month = stoi(m_parser.getPart(currentLine));
         int year = stoi(m_parser.getPart(currentLine));
         int personsCount = stoi(m_parser.getPart(currentLine));
-        parsedStaffs.push_back(Staff(day, month, year, personsCount));
+        parsedStaffs.push_back(Staff(personsCount, day, month, year));
     }
     return parsedStaffs;
 }

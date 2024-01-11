@@ -28,6 +28,11 @@ void Shift::addNurse(Nurse nurse)
     m_nurses.push_back(nurse);
 }
 
+Nurse Shift::nurseAt(int index) const
+{
+    return m_nurses[index];
+}
+
 void Shift::removeAt(int index)
 {
     for (auto iterator{index}; iterator < m_nurses.size() - 1; ++iterator) {
