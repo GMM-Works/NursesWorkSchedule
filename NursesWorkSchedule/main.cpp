@@ -1,4 +1,4 @@
-//#include "windows.h"
+#include "windows.h"
 #include "schedulecreator.h"
 #include "mainio.h"
 #include <iostream>
@@ -7,8 +7,8 @@
 
 int main()
 {
-    //    SetConsoleCP(65001);
-    //    SetConsoleOutputCP(65001);
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
 
     //    string tmp;
     //    MainIO terminal("(wprowadź polecenie):");
@@ -29,6 +29,12 @@ int main()
     //    for (auto iterator{0}; iterator < result2.size(); ++iterator) {
     //        writer.writeLine(result2[iterator].getFirstname() + ";" + result2[iterator].getLastname());
     //    }
+
+    ScheduleCreator creator;
+    creator.readNurses("nurses.csv");
+    creator.readHolidays("holidays.csv");
+    creator.readStaff("staff.csv");
+    creator.generatePlan("nout.csv");
 
 
     getchar(); getchar();
