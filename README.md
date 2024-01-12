@@ -82,4 +82,4 @@
     2. Wysyłanie plików
 - Spotkania
     - 09.01.2024 :white_check_mark:
-    - 11.01.2024
+    - 12.01.2024 :white_check_mark:
