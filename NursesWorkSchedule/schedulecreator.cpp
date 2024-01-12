@@ -53,14 +53,20 @@ void ScheduleCreator::generatePlan(string outputFileName)
     const auto weekendsCount{daysAfterFirstWeekend / DAYS_OF_WEEK + (daysAfterFirstWeekend / DAYS_OF_WEEK == 6 ? 2 : 1)};
     const vector<Holiday> baseDayShiftHolidays(m_holidays);
     const vector<Holiday> baseNightShiftHolidays(m_holidays);
-    const auto availableNurses{m_nurses.size()};
-    while (true) {
-        vector<Shift> dayShifts(planDays);
-        vector<Shift> nightShifts(planDays);
-        vector<vector<bool>> dayAfterHours(planDays);
-        vector<vector<bool>> nightAfterHours(planDays);
 
-        for (auto iterator{0}; iterator < planDays; iterator++) {
+    long long it2{0};
+
+    while (true) {
+        bool twelveHoursBreak{true};
+        bool oneFreeWeekend{true};
+        bool oneOrLessAfterHours{true};
+
+        vector<Shift> currentDayShifts(planDays);
+        vector<Shift> currentNightShifts(planDays);
+        vector<vector<bool>> currentDayAfterHours(planDays);
+        vector<vector<bool>> currentNightAfterHours(planDays);
+
+        for (auto iterator{0}; iterator < planDays; ++iterator) {
             auto personsForDay{0};
             for (auto &staff : m_staffs)
             {
@@ -72,61 +78,110 @@ void ScheduleCreator::generatePlan(string outputFileName)
                 personsForDay = DEFAULT_PERSONS_FOR_SHIFT;
             }
 
-            dayAfterHours[iterator].resize(personsForDay);
-            nightAfterHours[iterator].resize(personsForDay);
+            currentDayAfterHours[iterator].resize(personsForDay);
 
-            for (auto personIndex{0}; personIndex < personsForDay; personIndex++) {
-                dayShifts[iterator].addNurse(m_nurses[rand() % availableNurses]);
-                dayAfterHours[iterator][personIndex] = rand() % 2;
-            }
-
-            for (auto personIndex{0}; personIndex < personsForDay; personIndex++) {
-                nightShifts[iterator].addNurse(m_nurses[rand() % availableNurses]);;
-                nightAfterHours[iterator][personIndex] = rand() % 2;
-            }
-
+            currentNightAfterHours[iterator].resize(personsForDay);
         }
 
-        bool threeShiftsInWeek{true};
-        bool twelveHoursBreak{true};
-        bool oneFreeWeekend{true};
-        bool oneOrLessAfterHours{true};
-
-        //checking for threeShiftsInWeek
+        vector<Nurse> availableNurses = m_nurses;
 
 
-        vector<int> shiftsCount(m_nurses.size(), 0);
-        for (auto iterator{0}; iterator < m_nurses.size(); iterator++) {
-            for (auto iterator1{0}; iterator1 < planDays; iterator1++) {
-                auto nursesOfDay =  dayShifts[iterator1].getNurses();
-                auto nursesOfNight = nightShifts[iterator1].getNurses();
-                for (auto iterator2{0}; iterator2 < nursesOfDay.size(); iterator2++) {
-                    if (nursesOfDay[iterator2].getFirstname() ==  m_nurses[iterator].getFirstname() && nursesOfDay[iterator2].getLastname() ==  m_nurses[iterator].getLastname() && dayAfterHours[iterator1][iterator2] == false ) {
-                        shiftsCount[iterator]++;
-                    }
+        while (true) {
+            vector<Shift> dayShifts = currentDayShifts;
+            vector<Shift> nightShifts = currentNightShifts;
+            vector<vector<bool>> dayAfterHours{currentDayAfterHours};
+            vector<vector<bool>> nightAfterHours{currentNightAfterHours};
+            const auto nursesCount{availableNurses.size()};
+
+            for (auto iterator{0}; iterator < planDays; ++iterator) {
+                for (auto personIndex{currentDayShifts[iterator].getNurses().size()}; personIndex < dayAfterHours[iterator].size(); ++personIndex) {
+                    dayShifts[iterator].addNurse(availableNurses[rand() % nursesCount]);
+                    dayAfterHours[iterator][personIndex] = rand() % 2;
                 }
 
-                for (auto iterator2{0}; iterator2 < nursesOfNight.size(); iterator2++) {
-                    if (nursesOfNight[iterator2].getFirstname() ==  m_nurses[iterator].getFirstname() && nursesOfNight[iterator2].getLastname() ==  m_nurses[iterator].getLastname() && nightAfterHours[iterator1][iterator2] == false ) {
-                        shiftsCount[iterator]++;
+                for (auto personIndex{currentNightShifts[iterator].getNurses().size()}; personIndex < nightAfterHours[iterator].size(); ++personIndex) {
+                    nightShifts[iterator].addNurse(availableNurses[rand() % nursesCount]);
+                    nightAfterHours[iterator][personIndex] = rand() % 2;
+                }
+
+            }
+
+            //checking for threeShiftsInWeek
+
+
+            vector<int> shiftsCount(availableNurses.size(), 0);
+            for (auto iterator{0}; iterator < availableNurses.size(); ++iterator) {
+                for (auto iterator1{0}; iterator1 < planDays; ++iterator1) {
+                    auto nursesOfDay =  dayShifts[iterator1].getNurses();
+                    auto nursesOfNight = nightShifts[iterator1].getNurses();
+                    for (auto iterator2{currentDayShifts[iterator1].getNurses().size()}; iterator2 < nursesOfDay.size(); ++iterator2) {
+                        if (nursesOfDay[iterator2].getFirstname() ==  availableNurses[iterator].getFirstname() && nursesOfDay[iterator2].getLastname() ==  availableNurses[iterator].getLastname() && dayAfterHours[iterator1][iterator2] == false ) {
+                            shiftsCount[iterator]++;
+                        }
+                    }
+
+                    for (auto iterator2{currentNightShifts[iterator1].getNurses().size()}; iterator2 < nursesOfNight.size(); ++iterator2) {
+                        if (nursesOfNight[iterator2].getFirstname() ==  availableNurses[iterator].getFirstname() && nursesOfNight[iterator2].getLastname() ==  availableNurses[iterator].getLastname() && nightAfterHours[iterator1][iterator2] == false ) {
+                            shiftsCount[iterator]++;
+                        }
                     }
                 }
             }
-        }
 
-        for (auto &nurse : shiftsCount) {
-            if (nurse != 3 && nurse != 0) {
-                threeShiftsInWeek = false;
+            for (auto iterator{0}; iterator < shiftsCount.size(); ++iterator) {
+                if (shiftsCount[iterator] == 3) {
+                    for (auto iterator1{0}; iterator1 < planDays; ++iterator1) {
+                        auto nursesOfDay =  dayShifts[iterator1].getNurses();
+                        auto nursesOfNight = nightShifts[iterator1].getNurses();
+                        for (auto iterator2{0}; iterator2 < nursesOfDay.size(); ++iterator2) {
+                            if (nursesOfDay[iterator2].getFirstname() ==  availableNurses[iterator].getFirstname() && nursesOfDay[iterator2].getLastname() ==  availableNurses[iterator].getLastname() && dayAfterHours[iterator1][iterator2] == false ) {
+                                currentDayShifts[iterator1].addNurse(nursesOfDay[iterator2]);
+                                currentDayAfterHours[iterator1][iterator2] = dayAfterHours[iterator1][iterator2];
+                            }
+                        }
+
+                        for (auto iterator2{0}; iterator2 < nursesOfNight.size(); ++iterator2) {
+                            if (nursesOfNight[iterator2].getFirstname() ==  availableNurses[iterator].getFirstname() && nursesOfNight[iterator2].getLastname() ==  availableNurses[iterator].getLastname() && nightAfterHours[iterator1][iterator2] == false ) {
+                                currentNightShifts[iterator1].addNurse(nursesOfNight[iterator2]);
+                                currentNightAfterHours[iterator1][iterator2] = nightAfterHours[iterator1][iterator2];
+                            }
+                        }
+                    }
+
+                    for (auto iterator1{iterator}; iterator1 < availableNurses.size() - 1; iterator1++) {
+                        availableNurses[iterator1] = availableNurses[iterator1 + 1];
+                    }
+                    availableNurses.pop_back();
+
+                    for (auto iterator1{iterator}; iterator1 < shiftsCount.size() - 1; iterator1++) {
+                       shiftsCount[iterator1] = shiftsCount[iterator1 + 1];
+                    }
+                    shiftsCount.pop_back();
+
+                    iterator = 0;
+                }
+            }
+
+            auto allHours{0};
+            auto reservedHours{0};
+
+            for (auto iterator1{0}; iterator1 < planDays; ++iterator1) {
+                allHours += currentDayAfterHours[iterator1].size() + currentNightAfterHours[iterator1].size();
+                reservedHours += currentDayShifts[iterator1].getNurses().size() + currentNightShifts[iterator1].getNurses().size();
+            }
+
+            if ((allHours - reservedHours) < 3 || availableNurses.size() == 1) {
+                break;
             }
         }
 
-
-        if (threeShiftsInWeek && twelveHoursBreak && oneFreeWeekend && oneOrLessAfterHours) {
-            m_dayShifts = dayShifts;
-            m_nightShifts = nightShifts;
-            break;
-        }
+        // if (twelveHoursBreak && oneFreeWeekend && oneOrLessAfterHours) {
+        m_dayShifts = currentDayShifts;
+        m_nightShifts = currentNightShifts;
+        break;
+        // }
     }
+
 
     m_writer.open(outputFileName);
 

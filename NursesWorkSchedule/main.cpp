@@ -34,7 +34,7 @@ int main()
     creator.readNurses("nurses.csv");
     creator.readHolidays("holidays.csv");
     creator.readStaff("staff.csv");
-    creator.generatePlan("out.csv");
+    creator.generatePlan("nout.csv");
 
 
     getchar(); getchar();
