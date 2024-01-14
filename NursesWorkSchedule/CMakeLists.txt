@@ -7,14 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(
     NursesWorkSchedule
-    include/prompt/parser.h
-    include/prompt/procedure.h
-    include/prompt/procedureconsole.h
-    include/prompt/procedureconsole.cpp
-    include/prompt/storage.h
-    include/prompt/storage.cpp
-    include/prompt/wordsparser.h
-    include/prompt/wordsparser.cpp
     parser.h
     csvparser.h
     csvparser.cpp
@@ -46,8 +38,6 @@ add_executable(
     staff.h
     staff.cpp
     nursesinterface.h
-    scheduleprocedure.h
-    scheduleprocedure.cpp
     main.cpp
 )
 

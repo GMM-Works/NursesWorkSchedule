@@ -21,6 +21,7 @@ public:
     void readNurses(string CSVNursesFile);
     void readHolidays(string CSVHolidaysFile);
     void readStaff(string CSVHolidaysFile);
+    void generatePlanPart(vector<Shift>& dayShifts, vector<Shift>& nightShifts, vector<vector<bool>>& dayAfterHours, vector<vector<bool>>& nightAfterHours, int startDay, int endDay);
     void generatePlan(string outputFileName);
 
 private:
