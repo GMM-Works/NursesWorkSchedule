@@ -1,48 +1,48 @@
 # Nurses Work Schedule
 
-## Założenia
+## Assumptions
 
-- Wszyscy pracownicy są unikalni
-- Pracownik po 1 zmianie posiada 2 zmiany odpoczynku
-- Każdy pracownik ma jeden weekend wolny
+- All workers are unique
+- Worker after one shift has 2 shifts of rest
+- Each worker have 1 weekend off in a month
 
-## Dzień roboczy
+## Work Day
 
-- 2 zmiany w godzinach:
+- 2 shifts in hours:
   - 7:00 - 19:00
   - 19:00 - 7:00
-- Minimum 2 pracowników na zmianie
-- Możliwość zmodyfikowania ilości pracowników w danym dniu 
-- 14 zmian * 5 = 70 zmian w miesiącu
+- Min 2 workers on shift
+- Possibility of change amount of workers in each day 
+- 14 shifts * 5 = 70 shifts in month
 
 ## Funkcje
 
-- Wejście/Wyjście
-    - mode1 (raportowanie)
-    - mode2 (urlopy)
-    - mode3 (pracownicy)
-- Raportowanie
-    - Generuj raport
-    - Wyświetl raport dla pracownika
-    - Wyświetl raport dla zarządu
-- Pracownicy
-    - Lista pracowników
-    - Dodaj pracownika
-    - Usuń pracownika
+- Input/Output
+    - mode1 (reporting)
+    - mode2 (holidays)
+    - mode3 (workers)
+- Reporting
+    - Generate report
+    - Show report for worker
+    - Show report for managment
+- Workers
+    - List of workers
+    - Add worker
+    - Delete worker
 
-## 3 pliki w formacie CSV
+## 3 files in CSV format
 
-1. Pracownicy 
-    - Format: `Imie; Nazwisko; Id`
-2. Grafik
-    - Format: `Dzien; Zmiana; Imie; Nazwsiko; Czy_nadgodziny`
-3. Urlopy
-    - Format: `Imie; Nazwisko; Dzien; Miesiąc; Rok; Czy_na_cały_dzień; zmiana`
+1. Worker 
+    - Format: `FirstName; LastName; Id`
+2. Schedule
+    - Format: `Day; Shift; FirstName; LastName; Overtime`
+3. Holidays
+    - Format: `FirstName; LastName; Day; Month; Year; ForAllDay; Shift`
 
 ## Klasy
 
 - CSVFileReader:
-    - readFile(filename) `zwraca macierz wektorów z liniami i kolumnami`
+    - readFile(filename) `return matrix of wektor with lines and columns`
 - IO (interface)
     - readcommand
 - mainIO (IO)
@@ -55,7 +55,7 @@
 - generatePlanForAll (Procedure)
 - help (Procedure)
 - DateToPart
-    - convertDateToString() `dostaje "20.12.2023" zwraca indeksy`
+    - convertDateToString() `gets "20.12.2023" return indexes`
 - Nurse
     - m_firstname
     - m_surname
@@ -70,16 +70,4 @@
     - part `1(7:00-19:00) 2(19:00-7:00)`
     - (vector *Nurses) nursesAtThisDay
 
-## Harmonogram
-- Mateusz Smolarek:
-    1. Zrobić README.md :white_check_mark:
-    2. Zmienić Kod Runner :white_check_mark:
-    3. Input/Output
-    4. Dołożyć kolejne testy
-    5. Wstawić testy w podfoldery
-- Michał Borzuchowski:
-    1. Algorytm
-    2. Wysyłanie plików
-- Spotkania
-    - 09.01.2024 :white_check_mark:
-    - 12.01.2024 :white_check_mark:
+## Schedule of Work
