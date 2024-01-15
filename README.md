@@ -15,7 +15,7 @@
 - Possibility of change amount of workers in each day 
 - 14 shifts * 5 = 70 shifts in month
 
-## Funkcje
+## Functions
 
 - Input/Output
     - mode1 (reporting)
@@ -39,7 +39,7 @@
 3. Holidays
     - Format: `FirstName; LastName; Day; Month; Year; ForAllDay; Shift`
 
-## Klasy
+## Classes
 
 - CSVFileReader:
     - readFile(filename) `return matrix of vektor with lines and columns`
