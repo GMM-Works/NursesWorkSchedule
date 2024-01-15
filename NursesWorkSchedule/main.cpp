@@ -1,4 +1,4 @@
-#include "windows.h"
+//#include "windows.h"
 
 #include "schedulecreator.h"
 
@@ -6,8 +6,8 @@
 
 int main(int argc, char* argv[])
 {
-    SetConsoleCP(65001);
-    SetConsoleOutputCP(65001);
+    //SetConsoleCP(65001);
+    //SetConsoleOutputCP(65001);
 
     //    string tmp;
     //    MainIO terminal("(wprowadź polecenie):");planCreator.readNurses(argv[0]);
