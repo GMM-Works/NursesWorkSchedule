@@ -42,7 +42,7 @@
 ## Klasy
 
 - CSVFileReader:
-    - readFile(filename) `return matrix of wektor with lines and columns`
+    - readFile(filename) `return matrix of vektor with lines and columns`
 - IO (interface)
     - readcommand
 - mainIO (IO)
