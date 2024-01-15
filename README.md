@@ -71,14 +71,14 @@
     - (vector *Nurses) nursesAtThisDay
 
 ## Schedule of Work
-    - Michał Borzuchowski
-      1. Editing the ScheduleCreartor class to check the breaks between shifts and verify that weekend holidays are inserted correctly (1 - 2 work days)
-      2. Replacing missing hours with overtime for employees, i.e. changing the ScheduleCreator class (1 day of work)
-      3. Do another .exe file for reading for employee
-    - Mateusz Smolarek
-      1. Do unit test in Gtest for ScheduleCreator which check assumptions of program (1 day of work)
-      2. Do a code coverage for testes (1 - 2 work days)
-      3. Change an apperince of testes form .exe file to subdirectories (1 day of work) 
-    - Meetings
-      - 2024-01-15 (Metting start on 20 o'clock and ends 30 minutes later) :white_check_mark:
-      - 2024-01-18
+- Michał Borzuchowski
+  1. Editing the ScheduleCreartor class to check the breaks between shifts and verify that weekend holidays are inserted correctly (1 - 2 work days)
+  2. Replacing missing hours with overtime for employees, i.e. changing the ScheduleCreator class (1 day of work)
+  3. Do another .exe file for reading for employee
+- Mateusz Smolarek
+  1. Do unit test in Gtest for ScheduleCreator which check assumptions of program (1 day of work)
+  2. Do a code coverage for testes (1 - 2 work days)
+  3. Change an apperince of testes form .exe file to subdirectories (1 day of work)
+- Meetings
+  - 2024-01-15 (Metting start on 20 o'clock and ends 30 minutes later) :white_check_mark:
+  - 2024-01-18
