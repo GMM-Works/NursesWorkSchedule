@@ -22,7 +22,11 @@ public:
     void readHolidays(string CSVHolidaysFile);
     void readStaff(string CSVHolidaysFile);
     void generatePlan(string outputFileName);
-
+    vector<Holiday> getHolidays();
+    vector<Nurse> getNurses();
+    vector<Staff> getStaff();
+    vector<Shift> getDayShifts();
+    vector<Shift> getNightShifts();
 private:
     void getDate();
     bool isYearLeap(int year) const;

@@ -227,3 +227,19 @@ int ScheduleCreator::dayOfPlan(int day, int month, int year) const
     }
     return -1;
 }
+
+vector<Holiday> ScheduleCreator::getHolidays(){
+    return m_holidays;
+}
+vector<Nurse> ScheduleCreator::getNurses(){
+    return m_nurses;
+}
+vector<Staff> ScheduleCreator::getStaff(){
+    return m_staffs;
+}
+vector<Shift> ScheduleCreator::getDayShifts(){
+    return m_dayShifts;
+}
+vector<Shift> ScheduleCreator::getNightShifts(){
+    return m_nightShifts;
+}

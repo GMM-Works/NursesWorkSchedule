@@ -35,3 +35,4 @@ TEST_F(CSVFileReaderFixtureTests , FirstFileReaderTest){
     EXPECT_EQ(csvToTested[3].getLastname(),"Kasza");
     EXPECT_EQ(csvToTested[4].getLastname(),"Chylinska");
 }
+
