@@ -21,13 +21,13 @@ public:
     void readNurses(string CSVNursesFile);
     void readHolidays(string CSVHolidaysFile);
     void readStaff(string CSVHolidaysFile);
-    void generatePlanPart(vector<Shift>& dayShifts, vector<Shift>& nightShifts, vector<vector<bool>>& dayAfterHours, vector<vector<bool>>& nightAfterHours, int startDay, int endDay);
     void generatePlan(string outputFileName);
 
 private:
     void getDate();
     bool isYearLeap(int year) const;
     int dayOfPlan(int day, int month, int year) const;
+    void generatePlanPart(vector<Shift>& dayShifts, vector<Shift>& nightShifts, vector<vector<bool>>& dayAfterHours, vector<vector<bool>>& nightAfterHours, int startDay, int endDay);
 
 private:
     vector<Holiday> m_holidays;

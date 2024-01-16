@@ -16,6 +16,7 @@ public:
     string getLastname() const override;
     void setFirstname(string name) override;
     void setLastname(string name) override;
+    bool operator==(Nurse other) const;
 
 private:
     string m_firstname;
