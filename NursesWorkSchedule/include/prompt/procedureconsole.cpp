@@ -1,10 +1,10 @@
-#include "windows.h"
+//#include "windows.h"
 
 #include "procedureconsole.h"
 
 #include <iostream>
 
-const auto COLOR_HANDLE{GetStdHandle(STD_OUTPUT_HANDLE)};
+//const auto COLOR_HANDLE{GetStdHandle(STD_OUTPUT_HANDLE)};
 
 std::ProcedureConsole* CURRENT_PROCEDURE_CONSOLE = nullptr;
 
@@ -80,19 +80,19 @@ std::string std::ProcedureConsole::getStorage(string variable) const
 
 void std::changeConsoleColor(string color)
 {
-    for (auto iterator{0}; iterator < sizeof(COLORS) / sizeof(COLORS[0]); ++iterator) {
-        if (color == COLORS[iterator]) {
-            SetConsoleTextAttribute(COLOR_HANDLE, iterator);
-        }
-    }
+    // for (auto iterator{0}; iterator < sizeof(COLORS) / sizeof(COLORS[0]); ++iterator) {
+    //     if (color == COLORS[iterator]) {
+    //         SetConsoleTextAttribute(COLOR_HANDLE, iterator);
+    //     }
+    // }
 }
 
 void std::changeConsoleColor(int color)
 {
-    SetConsoleTextAttribute(COLOR_HANDLE, color);
+    // SetConsoleTextAttribute(COLOR_HANDLE, color);
 }
 
 void std::resetConsoleColor()
 {
-    SetConsoleTextAttribute(COLOR_HANDLE, DEFAULT_CONSOLE_COLOR);
+    // SetConsoleTextAttribute(COLOR_HANDLE, DEFAULT_CONSOLE_COLOR);
 }

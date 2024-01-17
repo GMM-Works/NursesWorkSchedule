@@ -9,7 +9,7 @@ protected:
     ScheduleCreator scheduleCreator;
 };
 
-TEST_F(ScheduleCreatorFixtureTests , TestOfWorkedShifts){
+TEST_F(ScheduleCreatorFixtureTests , TestGeneratedScheduleOfWork){
 
     scheduleCreator.readHolidays("../NursesWorkSchedule/holidays.csv");
     scheduleCreator.readStaff("../NursesWorkSchedule/staff.csv");
@@ -21,20 +21,23 @@ TEST_F(ScheduleCreatorFixtureTests , TestOfWorkedShifts){
     vector<Shift> dayShifts = scheduleCreator.getDayShifts();
     vector<Shift> nightShifts = scheduleCreator.getNightShifts();
     vector<vector<int>> indexesOfWorkedShifts;
-    for (int i = 0; i < nurses.size(); ++i) {
+    for (auto i = 0; i < nurses.size(); ++i) {
         indexesOfWorkedShifts.push_back(vector<int>());
-        for (int j = 0; j < dayShifts.size(); ++j) {
+        for (auto j = 0; j < dayShifts.size(); ++j) {
             if(j % 2 == 0){
                 vector<Nurse> NursesAtDay = dayShifts[j].getNurses();
-                for (int x = 0; x < NursesAtDay.size() ; ++x) {
+                EXPECT_TRUE(NursesAtDay.size() >= 2);
+                for (auto x = 0; x < NursesAtDay.size() ; ++x) {
                     if(nurses[i].getFirstname() == NursesAtDay[x].getFirstname() && nurses[i].getLastname() == NursesAtDay[x].getLastname()){
                         indexesOfWorkedShifts[i].push_back(j);
                     }
                 }
             }
-            else{
+            else if(j % 2 != 0){
                 vector<Nurse> NursesAtDay = nightShifts[j].getNurses();
-                for (int x = 0; x < NursesAtDay.size() ; ++x) {
+                EXPECT_TRUE(NursesAtDay.size() >= 2);
+                for (auto x = 0; x < NursesAtDay.size() ; ++x) {
+                    EXPECT_TRUE(NursesAtDay.size() >= 2);
                     if(nurses[i].getFirstname() == NursesAtDay[x].getFirstname() && nurses[i].getLastname() == NursesAtDay[x].getLastname()){
                         indexesOfWorkedShifts[i].push_back(j);
                     }
@@ -42,8 +45,8 @@ TEST_F(ScheduleCreatorFixtureTests , TestOfWorkedShifts){
             }
         }
     }
-    for (int i = 0; i <  indexesOfWorkedShifts.size(); ++i) {
-        for (int j = 1; j < indexesOfWorkedShifts[i].size(); ++j) {
+    for (auto i = 0; i <  indexesOfWorkedShifts.size(); ++i) {
+        for (auto j = 1; j < indexesOfWorkedShifts[i].size(); ++j) {
             EXPECT_NE(indexesOfWorkedShifts[i][j-1] +1 , indexesOfWorkedShifts[i][j]);
             EXPECT_NE(indexesOfWorkedShifts[i][j-1] +2 , indexesOfWorkedShifts[i][j]);
         }
