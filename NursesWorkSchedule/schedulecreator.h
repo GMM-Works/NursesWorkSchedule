@@ -27,6 +27,7 @@ public:
     vector<Staff> getStaff();
     vector<Shift> getDayShifts();
     vector<Shift> getNightShifts();
+    int getStartDayOfWeek();
 private:
     void getDate();
     bool isYearLeap(int year) const;

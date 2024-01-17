@@ -90,18 +90,9 @@ add_executable(
     holidayParserTest.cpp
     staffParserTest.cpp
     ScheduleCreatorTest.cpp
+
 )
 
-# set(staff_csv ${CMAKE_CURRENT_SOURCE_DIR}/staff.csv)
-# set(nurses_csv ${CMAKE_CURRENT_SOURCE_DIR}/nurses.csv)
-# set(holidays_csv ${CMAKE_CURRENT_SOURCE_DIR}/holidays.csv)
-# set(output_csv ${CMAKE_CURRENT_BINARY_DIR}/workScheduleTest.csv)
-
-# add_custom_command(
-#     OUTPUT  ${output_csv}
-#     COMMAND NursesWorkScheduleTest
-#     DEPENDS ${staff_csv} ${nurses_csv} ${holidays_csv}
-# )
 
 include(GNUInstallDirs)
 install(TARGETS NursesWorkSchedule
