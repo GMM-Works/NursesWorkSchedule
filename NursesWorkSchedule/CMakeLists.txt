@@ -5,10 +5,7 @@ project(NursesWorkSchedule LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(CodeCoverage "CodeCoverage" OFF)
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wno-deprecated-register ${CMAKE_CXX_FLAGS}")
-set(CMAKE_CXX_FLAGS_DEBUG "-std=c++11 -Wno-deprecated-register -O0 -g -fprofile-arcs -ftest-coverage ${CMAKE_CXX_FLAGS_DEBUG}")
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/)
 
 add_executable(
     NursesWorkSchedule
@@ -110,6 +107,9 @@ FetchContent_Declare(
 
 )
 
+include(CodeCoverage)
+append_coverage_compiler_flags()
+
 #For Windows: Prevent overriding the parent project's compiler/linker settings
 FetchContent_MakeAvailable(googletest)
 enable_testing()
@@ -127,10 +127,4 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(NursesWorkScheduleTest PRE_TEST)
-if (CMAKE_BUILD_TYPE MATCHES Debug)
-if (CodeCoverage MATCHES ON)
-include(CodeCoverage)
-setup_target_for_coverage(${PROJECT_NAME}_coverage poptests coverage)
-setup_target_for_coverage_cobertura(${PROJECT_NAME}_cobertura poptests coverage --gtest_output=xml:coverage.junit.xml)
-endif()
-endif()
+
