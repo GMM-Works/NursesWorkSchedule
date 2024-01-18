@@ -25,4 +25,4 @@ jobs:
         genhtml main_coverage.info --output-directory out
     - name: Print Code Covergae result
       working-directory: ${{runner.workspace}}/build/out
-      run: firefox index.html
+      run: nano index.html
