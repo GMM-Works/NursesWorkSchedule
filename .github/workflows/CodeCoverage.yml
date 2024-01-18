@@ -1,25 +1,43 @@
-name: test
-on:
-  push:
+name: Build
+
+on: [push, workflow_dispatch]
+
 jobs:
-  test-coverage:
-    runs-on: ubuntu-22.04
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
-      - name: Check out this repository
-        uses: actions/checkout@v4.1.0
-        
-      - name: Configure CMake
-        run: cmake -S $GITHUB_WORKSPACE/NursesWorkSchedule -B ${{runner.workspace}}/build
-      
-      - name: Build and test this project
-        working-directory: ${{runner.workspace}}/build
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.8 for gcovr
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+      - name: install gcovr 5.0
         run: |
-          cmake . -B build -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          pip install gcovr==5.0 # 5.1 is not supported
+      - name: Install sonar-scanner and build-wrapper
+        uses: SonarSource/sonarcloud-github-c-cpp@v2
+      - name: Run build-wrapper
+        run: |
+          run: cmake -S $GITHUB_WORKSPACE/NursesWorkSchedule -B ${{runner.workspace}}/build
+      - name: Build and test this project
+        run: |
+          cmake . -B build
           cmake --build build
           ctest --test-dir build
-
-      - name: Generate and send a code coverage report to Coveralls
-        uses: threeal/gcovr-action@v1.0.0
-        with:
-          coveralls-send: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Collect coverage into one XML report
+        run: |
+          gcovr --sonarqube > coverage.xml
+      - name: Run sonar-scanner
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }} # Put the name of your token here
+        run: |
+          sonar-scanner \
+            --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" \
+            --define sonar.coverageReportPaths=coverage.xml
