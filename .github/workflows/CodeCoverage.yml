@@ -17,9 +17,9 @@ jobs:
     - name: Build and test this project
       working-directory: ${{runner.workspace}}/build
       run: |
-        cmake . -B build .
-        cmake --build build .
-        ctest --test-dir build .
+        cmake . -B build
+        cmake --build build
+        ctest --test-dir build
       
     - name: Generate and send a code coverage report to Coveralls
       uses: threeal/gcovr-action@v1.0.0
