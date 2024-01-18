@@ -20,7 +20,11 @@ jobs:
     - name: Test
       working-directory: ${{runner.workspace}}/build
       run: GTEST_OUTPUT=xml:test-results/ GTEST_COLOR=1 ctest -V
-      
+    - name: Code Coverage
+      working-directory: ${{runner.workspace}}/build
+      run:
+        lcov -c -d . -o main_coverage.info \
+        genhtml main_coverage.info --output-directory out
     - name: Upload test results
       uses: actions/upload-artifact@v2
       if: failure()
