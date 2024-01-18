@@ -4,14 +4,14 @@
 
 #include <iostream>
 
-// const auto COLOR_HANDLE{GetStdHandle(STD_OUTPUT_HANDLE)};
+//const auto COLOR_HANDLE{GetStdHandle(STD_OUTPUT_HANDLE)};
 
-// std::ProcedureConsole* CURRENT_PROCEDURE_CONSOLE = nullptr;
+std::ProcedureConsole* CURRENT_PROCEDURE_CONSOLE = nullptr;
 
-// std::ProcedureConsole::ProcedureConsole()
-//     : m_prefix("")
-// {
-// }
+std::ProcedureConsole::ProcedureConsole()
+    : m_prefix("")
+{
+}
 
 std::ProcedureConsole::ProcedureConsole(std::string prefix)
     : m_prefix(prefix)
@@ -78,21 +78,21 @@ std::string std::ProcedureConsole::getStorage(string variable) const
     return NULL;
 }
 
-// void std::changeConsoleColor(string color)
-// {
-//     for (auto iterator{0}; iterator < sizeof(COLORS) / sizeof(COLORS[0]); ++iterator) {
-//         if (color == COLORS[iterator]) {
-//             SetConsoleTextAttribute(COLOR_HANDLE, iterator);
-//         }
-//     }
-// }
+void std::changeConsoleColor(string color)
+{
+    // for (auto iterator{0}; iterator < sizeof(COLORS) / sizeof(COLORS[0]); ++iterator) {
+    //     if (color == COLORS[iterator]) {
+    //         SetConsoleTextAttribute(COLOR_HANDLE, iterator);
+    //     }
+    // }
+}
 
-// void std::changeConsoleColor(int color)
-// {
-//     SetConsoleTextAttribute(COLOR_HANDLE, color);
-// }
+void std::changeConsoleColor(int color)
+{
+    //SetConsoleTextAttribute(COLOR_HANDLE, color);
+}
 
-// void std::resetConsoleColor()
-// {
-//     SetConsoleTextAttribute(COLOR_HANDLE, DEFAULT_CONSOLE_COLOR);
-// }
+void std::resetConsoleColor()
+{
+    //SetConsoleTextAttribute(COLOR_HANDLE, DEFAULT_CONSOLE_COLOR);
+}
