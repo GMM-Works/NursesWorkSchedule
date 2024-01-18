@@ -22,15 +22,11 @@ jobs:
           pip install gcovr==5.0 # 5.1 is not supported
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v2
- - name: Run build-wrapper
+      - name: Run build-wrapper
         run: |
           mkdir build
           cmake -S . -B build
           build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Release      - name: Build and test this project
-        run: |
-          cmake . -B build
-          cmake --build build
-          ctest --test-dir build
       - name: Collect coverage into one XML report
         run: |
           gcovr --sonarqube > coverage.xml
