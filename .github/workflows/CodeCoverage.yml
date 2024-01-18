@@ -1,28 +1,21 @@
-name: Example test
-
-on: [push, workflow_dispatch]
-
+name: test
+on:
+  push:
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  test-coverage:
+    runs-on: ubuntu-22.04
     steps:
-    - name: Check out this repository
-      uses: actions/checkout@v4.1.0
-    
-    - name: Configure CMake
-      run: cmake -S $GITHUB_WORKSPACE/NursesWorkSchedule -B ${{runner.workspace}}/build
-      
-    - name: Build and test this project
-      working-directory: ${{runner.workspace}}/build
-      run: |
-        cmake . -B build
-        cmake --build build
-        ctest --test-dir build
-      
-    - name: Generate and send a code coverage report to Coveralls
-      uses: threeal/gcovr-action@v1.0.0
-      with:
-        coveralls-send: true
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check out this repository
+        uses: actions/checkout@v4.1.0
+        
+      - name: Build and test this project
+        run: |
+          cmake . -B build -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          cmake --build build
+          ctest --test-dir build
+
+      - name: Generate and send a code coverage report to Coveralls
+        uses: threeal/gcovr-action@v1.0.0
+        with:
+          coveralls-send: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
