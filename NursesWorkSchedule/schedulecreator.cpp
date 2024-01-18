@@ -55,6 +55,7 @@ void ScheduleCreator::generatePlan(string outputFileName)
         bool twelveHoursBreak{true};
         bool oneFreeWeekend{true};
         bool oneOrLessAfterHours{true};
+        bool compatibleWithHolidays{true};
 
         vector<Shift> currentDayShifts(planDays);
         vector<Shift> currentNightShifts(planDays);
@@ -79,18 +80,33 @@ void ScheduleCreator::generatePlan(string outputFileName)
         }
 
         vector<Nurse> availableNurses = m_nurses;
-
-        generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, 0, firstSunday);
-        auto daysCompleted{firstSunday};
-        while (daysCompleted < planDays - 7) {
-            generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, daysCompleted, daysCompleted + 7);
-            daysCompleted += 7;
+        auto success{false};
+        while (true) {
+            success = generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, 0, firstSunday);
+            if (!success) {
+                continue;
+            }
+            auto daysCompleted{firstSunday};
+            while (daysCompleted < planDays - 7) {
+                auto success{false};
+                success = generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, daysCompleted, daysCompleted + 7);
+                if (!success) {
+                    continue;
+                }
+                daysCompleted += 7;
+            }
+            success = generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, daysCompleted, planDays);
+            if (!success) {
+                continue;
+            }
+            break;
         }
-        generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, daysCompleted, planDays);
 
         oneFreeWeekend = validateForWeekends(currentDayShifts, currentNightShifts, firstSunday, planDays);
 
-        if (twelveHoursBreak && oneFreeWeekend && oneOrLessAfterHours) {
+        compatibleWithHolidays = validateForHolidays(currentDayShifts, currentNightShifts, planMonth, planYear);
+
+        if (twelveHoursBreak && oneFreeWeekend && oneOrLessAfterHours && compatibleWithHolidays) {
             m_dayShifts = currentDayShifts;
             m_nightShifts = currentNightShifts;
             break;
@@ -142,74 +158,54 @@ int ScheduleCreator::dayOfPlan(int day, int month, int year) const
     return -1;
 }
 
-void ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &nightShifts, vector<vector<bool> > &dayAfterHours, vector<vector<bool>> &nightAfterHours, int startDay, int endDay)
+bool ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &nightShifts, vector<vector<bool> > &dayAfterHours, vector<vector<bool>> &nightAfterHours, int startDay, int endDay)
 {
     auto resets{0};
     vector<Nurse> availableNurses = m_nurses;
+    for (auto iterator{startDay}; iterator < endDay; ++iterator) {
+        dayShifts[iterator].getNurses().clear();
+        nightShifts[iterator].getNurses().clear();
+    }
+
     while (true) {
         vector<Shift> cloneDayShifts = dayShifts;
         vector<Shift> cloneNightShifts = nightShifts;
         vector<vector<bool>> cloneDayAfterHours{dayAfterHours};
         vector<vector<bool>> cloneNightAfterHours{nightAfterHours};
-        const auto nursesCount{availableNurses.size()};
-
 
         for (auto iterator{startDay}; iterator < endDay; ++iterator) {
+
+            auto currentNurses{availableNurses};
+            for (auto setNurse{0}; setNurse < dayShifts[iterator].getNurses().size(); ++setNurse) {
+                for (auto allNurses{0}; allNurses < currentNurses.size(); ++allNurses) {
+                    if (dayShifts[iterator].getNurses()[setNurse] == currentNurses[allNurses]) {
+                        currentNurses.erase(currentNurses.begin() + allNurses);
+                        break;
+                    }
+                }
+            }
+
             for (auto personIndex{dayShifts[iterator].getNurses().size()}; personIndex < cloneDayAfterHours[iterator].size(); ++personIndex) {
-                int chosenIndex;
-                chosenIndex = rand() % nursesCount;
-                // while (true) {
-                //     chosenIndex = rand() % nursesCount;
-                //     bool exitCode{true};
-                //     if (iterator > 0) {
-                //         for (auto &person : cloneNightShifts[iterator - 1].getNurses()) {
-                //             if (person == availableNurses[chosenIndex]) {
-                //                 exitCode = false;
-                //                 break;
-                //             }
-                //         }
-                //     }
-                //         if (exitCode) {
-                //             for (auto &person : cloneDayShifts[iterator].getNurses()) {
-                //                 if (person == availableNurses[chosenIndex]) {
-                //                     exitCode = false;
-                //                     break;
-                //                 }
-                //             }
-                //         }
-                //     if (exitCode) {
-                //         break;
-                //     }
-                // }
-                cloneDayShifts[iterator].addNurse(availableNurses[chosenIndex]);
+                auto chosenIndex{rand() % currentNurses.size()};
+                cloneDayShifts[iterator].addNurse(currentNurses[chosenIndex]);
+                currentNurses.erase(currentNurses.begin() + chosenIndex);
                 cloneDayAfterHours[iterator][personIndex] = rand() % 2;
             }
 
+            currentNurses = availableNurses;
+            for (auto setNurse{0}; setNurse < nightShifts[iterator].getNurses().size(); ++setNurse) {
+                for (auto allNurses{0}; allNurses < currentNurses.size(); ++allNurses) {
+                    if (nightShifts[iterator].getNurses()[setNurse] == currentNurses[allNurses]) {
+                        currentNurses.erase(currentNurses.begin() + allNurses);
+                        break;
+                    }
+                }
+            }
+
             for (auto personIndex{nightShifts[iterator].getNurses().size()}; personIndex < cloneNightAfterHours[iterator].size(); ++personIndex) {
-                int chosenIndex;
-                chosenIndex = rand() % nursesCount;
-                // while (true) {
-                //     chosenIndex = rand() % nursesCount;
-                //     bool exitCode{true};
-                //     for (auto &person : cloneDayShifts[iterator].getNurses()) {
-                //         if (person == availableNurses[chosenIndex]) {
-                //             exitCode = false;
-                //             break;
-                //         }
-                //     }
-                //         if (exitCode) {
-                //             for (auto &person : cloneNightShifts[iterator].getNurses()) {
-                //                 if (person == availableNurses[chosenIndex]) {
-                //                     exitCode = false;
-                //                     break;
-                //                 }
-                //             }
-                //         }
-                //     if (exitCode) {
-                //         break;
-                //     }
-                // }
-                cloneNightShifts[iterator].addNurse(availableNurses[chosenIndex]);
+                auto chosenIndex{rand() % currentNurses.size()};
+                cloneNightShifts[iterator].addNurse(currentNurses[chosenIndex]);
+                currentNurses.erase(currentNurses.begin() + chosenIndex);
                 cloneNightAfterHours[iterator][personIndex] = rand() % 2;
             }
 
@@ -279,7 +275,12 @@ void ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &
         }
 
         if ((allHours - reservedHours) < 3 || availableNurses.size() == 1) {
-            break;
+            return true;
+        } else {
+            ++resets;
+            if (resets == MAXIMAL_ROLL_RESTARTS) {
+                return false;
+            }
         }
     }
 }
@@ -351,6 +352,27 @@ bool ScheduleCreator::validateForWeekends(vector<Shift> &dayShifts, vector<Shift
             return false;
         }
 
+    }
+    return true;
+}
+
+bool ScheduleCreator::validateForHolidays(vector<Shift> &dayShifts, vector<Shift> &nightShifts, int planMonth, int planYear) const
+{
+    for (auto &holiday : m_holidays) {
+        if (holiday.getMonth() == planMonth && holiday.getYear() == planYear) {
+            for (auto day{0}; day < dayShifts.size(); ++day) {
+                for (auto &person : dayShifts[day].getNurses()) {
+                    if (person.getFirstname() == holiday.getFirstname() && person.getLastname() == person.getFirstname()) {
+                        return false;
+                    }
+                }
+                for (auto &person : nightShifts[day].getNurses()) {
+                    if (person.getFirstname() == holiday.getFirstname() && person.getLastname() == person.getFirstname()) {
+                        return false;
+                    }
+                }
+            }
+        }
     }
     return true;
 }
