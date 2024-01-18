@@ -16,9 +16,7 @@ jobs:
       
     - name: Build
       working-directory: ${{runner.workspace}}/build
-      run: |
-          cmake . -B build
-          cmake --build build .
+      run: cmake --build .
       
     - name: Test
       working-directory: ${{runner.workspace}}/build
