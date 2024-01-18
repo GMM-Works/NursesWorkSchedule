@@ -39,3 +39,8 @@ void Shift::removeAt(int index)
         m_nurses[iterator] = m_nurses[iterator + 1];
     }
 }
+
+void Shift::clearNurses()
+{
+    m_nurses.clear();
+}

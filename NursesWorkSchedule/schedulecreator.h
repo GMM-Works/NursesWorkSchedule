@@ -11,7 +11,7 @@
 const int DAYS_OF_MONTH[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 const auto DAYS_OF_WEEK{7};
 const auto DEFAULT_PERSONS_FOR_SHIFT{2};
-const auto MAXIMAL_ROLL_RESTARTS{5000};
+const auto MAXIMAL_ROLL_RESTARTS{2500};
 
 class ScheduleCreator
 {

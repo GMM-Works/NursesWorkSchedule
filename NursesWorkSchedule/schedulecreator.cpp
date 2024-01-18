@@ -88,12 +88,14 @@ void ScheduleCreator::generatePlan(string outputFileName)
             }
             auto daysCompleted{firstSunday};
             while (daysCompleted < planDays - 7) {
-                auto success{false};
                 success = generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, daysCompleted, daysCompleted + 7);
                 if (!success) {
-                    continue;
+                    break;
                 }
                 daysCompleted += 7;
+            }
+            if (!success) {
+                continue;
             }
             success = generatePlanPart(currentDayShifts, currentNightShifts, currentDayAfterHours, currentNightAfterHours, daysCompleted, planDays);
             if (!success) {
@@ -163,8 +165,8 @@ bool ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &
     auto resets{0};
     vector<Nurse> availableNurses = m_nurses;
     for (auto iterator{startDay}; iterator < endDay; ++iterator) {
-        dayShifts[iterator].getNurses().clear();
-        nightShifts[iterator].getNurses().clear();
+        dayShifts[iterator].clearNurses();
+        nightShifts[iterator].clearNurses();
     }
 
     while (true) {
@@ -271,7 +273,7 @@ bool ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &
 
         for (auto iterator1{startDay}; iterator1 < endDay; ++iterator1) {
             allHours += dayAfterHours[iterator1].size() + nightAfterHours[iterator1].size();
-            reservedHours += dayShifts[iterator1].getNurses().size() + nightShifts[iterator1].getNurses().size();            
+            reservedHours += dayShifts[iterator1].getNurses().size() + nightShifts[iterator1].getNurses().size();
         }
 
         if ((allHours - reservedHours) < 3 || availableNurses.size() == 1) {
