@@ -14,15 +14,14 @@ jobs:
       run: cmake -S $GITHUB_WORKSPACE/NursesWorkSchedule -B ${{runner.workspace}}/build
       
     - name: Build
-      working-directory: ${{runner.workspace}}/build
+      working-directory: ${{runner.workspace}}/build/
       run: cmake --build .
       
     - name: Code Coverage
-      working-directory: ${{runner.workspace}}/build
       run:
-        ctest --progress \
-        lcov -c -d . -o main_coverage.info \
-        genhtml main_coverage.info ${{runner.workspace}}/build out
+        ctest --progress ${{runner.workspace}}/build/
+        lcov -c -d . -o main_coverage.info ${{runner.workspace}}/build/
+        genhtml main_coverage.info ${{runner.workspace}}/build/ out
     - name: Print Code Covergae result
-      working-directory: ${{runner.workspace}}/build
+      working-directory: ${{runner.workspace}}/build/
       run: firefox index.html
