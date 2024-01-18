@@ -24,5 +24,5 @@ jobs:
         lcov -c -d . -o main_coverage.info /
         genhtml main_coverage.info --output-directory out
     - name: Print Code Covergae result
-      working-directory: ${{runner.workspace}}/build
-      run: echo  https://htmlpreview.github.io/?https://github.com/GMM-Works/${{runner.workspace}}/build/out/index.html
+      working-directory: ${{runner.workspace}}/build/out
+      run: firefox index.html
