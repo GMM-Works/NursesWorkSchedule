@@ -22,7 +22,7 @@ jobs:
       run:
         ctest --progress \
         lcov -c -d . -o main_coverage.info \
-        genhtml main_coverage.info --output-directory out
+        genhtml main_coverage.info ${{runner.workspace}}/build out
     - name: Print Code Covergae result
       working-directory: ${{runner.workspace}}/build
       run: firefox index.html
