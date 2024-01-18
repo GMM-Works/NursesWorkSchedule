@@ -22,8 +22,6 @@ jobs:
       run:
         ctest --progress \
         lcov -c -d . -o main_coverage.info \
-        genhtml main_coverage.info --output-directory out
-    - name: Generate and send a code coverage report to Coveralls
-      uses: threeal/gcovr-action@v1.0.0
-      with:
-        coveralls-send: true
+        genhtml main_coverage.info ${{runner.workspace}}/build out
+    - name: Print Code Covergae result
+      working-directory: ${{runner.workspace}}/build
