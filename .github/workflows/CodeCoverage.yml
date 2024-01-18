@@ -25,4 +25,4 @@ jobs:
         genhtml main_coverage.info / out
     - name: Print Code Covergae result
       working-directory: ${{runner.workspace}}/build
-      run: https://github.com/GMM-Works/${{runner.workspace}}/build
+      run: https://github.com/GMM-Works/${{runner.workspace}}/build/index.html
