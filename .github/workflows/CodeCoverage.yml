@@ -14,13 +14,11 @@ jobs:
     - name: Configure CMake
       run: cmake -S $GITHUB_WORKSPACE/NursesWorkSchedule -B ${{runner.workspace}}/build
       
-    - name: Build
-      working-directory: ${{runner.workspace}}/build
-      run: cmake --build .
-      
-    - name: Test
-      working-directory: ${{runner.workspace}}/build
-      run: GTEST_OUTPUT=xml:test-results/ GTEST_COLOR=1 ctest -V
+    - name: Build and test this project
+      run: |
+        cmake . -B build .
+        cmake --build build .
+        ctest --test-dir build .
       
     - name: Generate and send a code coverage report to Coveralls
       uses: threeal/gcovr-action@v1.0.0
