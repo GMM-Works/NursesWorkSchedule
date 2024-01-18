@@ -17,19 +17,13 @@ jobs:
       working-directory: ${{runner.workspace}}/build
       run: cmake --build .
       
-    - name: Test
-      working-directory: ${{runner.workspace}}/build
-      run: GTEST_OUTPUT=xml:test-results/ GTEST_COLOR=1 ctest -V
-      
     - name: Code Coverage
       working-directory: ${{runner.workspace}}/build
       run:
         ctest --progress \
         lcov -c -d . -o main_coverage.info \
         genhtml main_coverage.info --output-directory out
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
-      if: failure()
+    - name: Generate and send a code coverage report to Coveralls
+      uses: threeal/gcovr-action@v1.0.0
       with:
-        name: test_results_xml
-        path: ${{runner.workspace}}/build/test-results/**/*.xml
+        coveralls-send: true
