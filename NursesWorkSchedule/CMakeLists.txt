@@ -5,7 +5,14 @@ project(NursesWorkSchedule LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake/modules)
+
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+if (CodeCoverage MATCHES ON)
+include(CodeCoverage)
+append_coverage_compiler_flags()
+endif()
+endif()
 
 add_executable(
     NursesWorkSchedule
@@ -106,9 +113,6 @@ FetchContent_Declare(
   GIT_TAG  "main"
 
 )
-
-include(CodeCoverage)
-append_coverage_compiler_flags()
 
 #For Windows: Prevent overriding the parent project's compiler/linker settings
 FetchContent_MakeAvailable(googletest)
