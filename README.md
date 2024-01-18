@@ -81,4 +81,4 @@
   3. Change an apperince of testes form .exe file to subdirectories (1 day of work)
 - Meetings
   - 2024-01-15 (Metting start on 20 o'clock and ends 30 minutes later) :white_check_mark:
-  - 2024-01-18
+  - 2024-01-19
