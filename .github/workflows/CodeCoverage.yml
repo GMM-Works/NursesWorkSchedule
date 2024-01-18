@@ -16,12 +16,18 @@ jobs:
     - name: Build
       working-directory: ${{runner.workspace}}/build
       run: cmake --build .
+    - name: run test
+      working-directory: ${{runner.workspace}}/build
+      run:
+        ctest --progress /
       
     - name: Code Coverage
       working-directory: ${{runner.workspace}}/build
       run:
-        ctest --progress /
         lcov -c -d . -o main_coverage.info /
+    - name: Get html
+      working-directory: ${{runner.workspace}}/build
+      run:
         genhtml main_coverage.info --output-directory out
     - name: Print Code Covergae result
       working-directory: ${{runner.workspace}}/build/out
