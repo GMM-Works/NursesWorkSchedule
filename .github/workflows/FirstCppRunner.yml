@@ -19,7 +19,7 @@ jobs:
       
     - name: Test
       working-directory: ${{runner.workspace}}/build
-      run: ctest
+      run: ctest --progress
       
     - name: Upload test results
       uses: actions/upload-artifact@v2
