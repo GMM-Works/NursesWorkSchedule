@@ -18,6 +18,7 @@ public:
     void addNurse(Nurse nurse);
     Nurse nurseAt(int index) const;
     void removeAt(int index);
+    void clearNurses();
 
 private:
     vector<Nurse> m_nurses;

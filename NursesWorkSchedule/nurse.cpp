@@ -29,3 +29,11 @@ void Nurse::setLastname(string name)
 {
     this->m_lastname = name;
 }
+
+bool Nurse::operator==(Nurse other) const
+{
+    if (other.getFirstname() == this->getFirstname() && this->getLastname() == other.getLastname()) {
+        return true;
+    }
+    return false;
+}
