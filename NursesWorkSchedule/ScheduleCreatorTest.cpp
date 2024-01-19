@@ -6,39 +6,44 @@
 class ScheduleCreatorFixtureTests : public ::testing::Test
 {
 protected:
-    ScheduleCreator scheduleCreator;
+    void generateSchedule () {
+        m_scheduleCreator.readHolidays("../NursesWorkSchedule/holidays.csv");
+        m_scheduleCreator.readStaff("../NursesWorkSchedule/staff.csv");
+        m_scheduleCreator.readNurses("../NursesWorkSchedule/nurses.csv");
+        m_scheduleCreator.generatePlan("workScheduleTest.csv");
+        m_holidays = m_scheduleCreator.getHolidays();
+        m_staff = m_scheduleCreator.getStaff();
+        m_nurses = m_scheduleCreator.getNurses();
+        m_dayShifts = m_scheduleCreator.getDayShifts();
+        m_nightShifts = m_scheduleCreator.getNightShifts();
+    }
+protected:
+    ScheduleCreator m_scheduleCreator;
+    vector<Holiday> m_holidays;
+    vector<Staff> m_staff;
+    vector<Nurse> m_nurses;
+    vector<Shift> m_dayShifts;
+    vector<Shift> m_nightShifts;
 };
 
-TEST_F(ScheduleCreatorFixtureTests , TestGeneratedScheduleOfWork){
-
-    scheduleCreator.readHolidays("../NursesWorkSchedule/holidays.csv");
-    scheduleCreator.readStaff("../NursesWorkSchedule/staff.csv");
-    scheduleCreator.readNurses("../NursesWorkSchedule/nurses.csv");
-    scheduleCreator.generatePlan("workScheduleTest.csv");
-    vector<Holiday> holidays = scheduleCreator.getHolidays();
-    vector<Staff> staff = scheduleCreator.getStaff();
-    vector<Nurse> nurses = scheduleCreator.getNurses();
-    vector<Shift> dayShifts = scheduleCreator.getDayShifts();
-    vector<Shift> nightShifts = scheduleCreator.getNightShifts();
+TEST_F(ScheduleCreatorFixtureTests , TestBreaksBetweenShiftsAndWorkedHours){
+    generateSchedule();
     vector<vector<int>> indexesOfWorkedShifts;
-    for (auto i = 0; i < nurses.size(); ++i) {
+    for (auto i = 0; i < m_nurses.size(); ++i) {
         indexesOfWorkedShifts.push_back(vector<int>());
-        for (auto j = 0; j < dayShifts.size(); ++j) {
+        for (auto j = 0; j < m_dayShifts.size(); ++j) {
             if(j % 2 == 0){
-                vector<Nurse> NursesAtDay = dayShifts[j].getNurses();
-                EXPECT_TRUE(NursesAtDay.size() >= 2);
+                vector<Nurse> NursesAtDay = m_dayShifts[j].getNurses();
                 for (auto x = 0; x < NursesAtDay.size() ; ++x) {
-                    if(nurses[i].getFirstname() == NursesAtDay[x].getFirstname() && nurses[i].getLastname() == NursesAtDay[x].getLastname()){
+                    if(m_nurses[i].getFirstname() == NursesAtDay[x].getFirstname() && m_nurses[i].getLastname() == NursesAtDay[x].getLastname()){
                         indexesOfWorkedShifts[i].push_back(j);
                     }
                 }
             }
             else if(j % 2 != 0){
-                vector<Nurse> NursesAtDay = nightShifts[j].getNurses();
-                EXPECT_TRUE(NursesAtDay.size() >= 2);
-                for (auto x = 0; x < NursesAtDay.size() ; ++x) {
-                    EXPECT_TRUE(NursesAtDay.size() >= 2);
-                    if(nurses[i].getFirstname() == NursesAtDay[x].getFirstname() && nurses[i].getLastname() == NursesAtDay[x].getLastname()){
+                vector<Nurse> NursesAtDay = m_nightShifts[j].getNurses();
+                for (auto x = 0; x < NursesAtDay.size(); ++x) {
+                    if(m_nurses[i].getFirstname() == NursesAtDay[x].getFirstname() && m_nurses[i].getLastname() == NursesAtDay[x].getLastname()){
                         indexesOfWorkedShifts[i].push_back(j);
                     }
                 }
@@ -51,5 +56,19 @@ TEST_F(ScheduleCreatorFixtureTests , TestGeneratedScheduleOfWork){
             EXPECT_NE(indexesOfWorkedShifts[i][j-1] +2 , indexesOfWorkedShifts[i][j]);
         }
         EXPECT_TRUE(indexesOfWorkedShifts[i].size() <= 13);
+    }
+}
+
+TEST_F(ScheduleCreatorFixtureTests , TestNumberOfEmployeeOnShift){
+    generateSchedule();
+    for (auto j = 0; j < m_dayShifts.size(); ++j) {
+        if(j % 2 == 0){
+            vector<Nurse> NursesAtDay = m_dayShifts[j].getNurses();
+            EXPECT_TRUE(NursesAtDay.size() >= 2);
+        }
+        else if(j % 2 != 0){
+            vector<Nurse> NursesAtDay = m_nightShifts[j].getNurses();
+            EXPECT_TRUE(NursesAtDay.size() >= 2);
+            }
     }
 }
