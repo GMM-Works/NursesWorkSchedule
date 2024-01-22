@@ -35,3 +35,8 @@ void CSVFileWriter::writeLine(string text)
 {
     m_output << (text + '\n').c_str();
 }
+
+void CSVFileWriter::write(string text)
+{
+    m_output << text;
+}

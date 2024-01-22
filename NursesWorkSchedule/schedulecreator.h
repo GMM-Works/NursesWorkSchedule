@@ -31,6 +31,8 @@ private:
     bool generatePlanPart(vector<Shift>& dayShifts, vector<Shift>& nightShifts, vector<vector<bool>>& dayAfterHours, vector<vector<bool>>& nightAfterHours, int startDay, int endDay);
     bool validateForWeekends(vector<Shift>& dayShifts, vector<Shift>& nightShifts, int firstSunday, int planDays) const;
     bool validateForHolidays(vector<Shift>& dayShifts, vector<Shift>& nightShifts, int planMonth, int planYear) const;
+    bool validateForBreaks(vector<Shift>& dayShifts, vector<Shift>& nightShifts, Nurse selectedNurse, int lastDay) const;
+    bool shiftIncludes(vector<Nurse> nurses, Nurse target) const;
 
 private:
     vector<Holiday> m_holidays;

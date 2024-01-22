@@ -14,6 +14,7 @@ public:
     void close() override;
     void open(string fileName) override;
     void writeLine(string text) override;
+    void write(string text);
 
 private:
     ofstream m_output;

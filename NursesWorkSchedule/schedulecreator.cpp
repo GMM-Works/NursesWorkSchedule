@@ -116,24 +116,59 @@ void ScheduleCreator::generatePlan(string outputFileName)
     }
 
     m_writer.open(outputFileName);
-
     for (auto iterator{0}; iterator < planDays; iterator++) {
-        vector<Nurse> dayNurses = m_dayShifts[iterator].getNurses();
-        vector<Nurse> nightNurses = m_nightShifts[iterator].getNurses();
-        m_writer.writeLine(to_string(iterator + 1) + "." + to_string(planMonth) + "." + to_string(planYear) + ";");
-        m_writer.writeLine("zmiana dzienna:;");
-        string dayOutput;
-        for (auto nursesIndex{0};  nursesIndex < dayNurses.size(); nursesIndex++) {
-            dayOutput += dayNurses[nursesIndex].getFirstname() + " " + dayNurses[nursesIndex].getLastname() + ";";
-        }
-        m_writer.writeLine(dayOutput);
-        m_writer.writeLine("zmiana nocna:;");
-        string nightOutput;
-        for (auto nursesIndex{0};  nursesIndex < nightNurses.size(); nursesIndex++) {
-            nightOutput += nightNurses[nursesIndex].getFirstname() + " " + nightNurses[nursesIndex].getLastname() + ";";
-        }
-        m_writer.writeLine(nightOutput);
+        m_writer.write(to_string(iterator + 1) + "." + to_string(planMonth) + "." + to_string(planYear) + ";");
     }
+    m_writer.writeLine("");
+    for (auto iterator{0}; iterator < planDays; iterator++) {
+        m_writer.write("zmiana dzienna;");
+    }
+    m_writer.writeLine("");
+
+    bool isAnythingToPrint{true};
+    auto line{0};
+    while (isAnythingToPrint == true) {
+        isAnythingToPrint = false;
+        for (auto iterator{0}; iterator < planDays; iterator++) {
+            if (line < m_dayShifts[iterator].getNurses().size()) {
+                m_writer.write(m_dayShifts[iterator].getNurses()[line].getFirstname() + " " + m_dayShifts[iterator].getNurses()[line].getLastname() + ";");
+                isAnythingToPrint = true;
+            } else if (line == m_dayShifts[iterator].getNurses().size()) {
+                m_writer.write("zmiana nocna;");
+                isAnythingToPrint = true;
+            } else if (line > m_dayShifts[iterator].getNurses().size() && line < m_dayShifts[iterator].getNurses().size() * 2 + 1) {
+                auto calculatedLine{line - (m_dayShifts[iterator].getNurses().size() + 1)};
+                if (m_nightShifts[iterator].getNurses().size() > calculatedLine) {
+                    m_writer.write(m_nightShifts[iterator].getNurses()[calculatedLine].getFirstname() + " " + m_nightShifts[iterator].getNurses()[calculatedLine].getLastname());
+                }
+                m_writer.write(";");
+                isAnythingToPrint = true;
+            } else {
+                m_writer.write(";");
+            }
+        }
+        m_writer.writeLine("");
+        line++;
+    }
+
+
+    // for (auto iterator{0}; iterator < planDays; iterator++) {
+    //     vector<Nurse> dayNurses = m_dayShifts[iterator].getNurses();
+    //     vector<Nurse> nightNurses = m_nightShifts[iterator].getNurses();
+    //     m_writer.writeLine(to_string(iterator + 1) + "." + to_string(planMonth) + "." + to_string(planYear) + ";");
+    //     m_writer.writeLine("zmiana dzienna:;");
+    //     string dayOutput;
+    //     for (auto nursesIndex{0};  nursesIndex < dayNurses.size(); nursesIndex++) {
+    //         dayOutput += dayNurses[nursesIndex].getFirstname() + " " + dayNurses[nursesIndex].getLastname() + ";";
+    //     }
+    //     m_writer.writeLine(dayOutput);
+    //     m_writer.writeLine("zmiana nocna:;");
+    //     string nightOutput;
+    //     for (auto nursesIndex{0};  nursesIndex < nightNurses.size(); nursesIndex++) {
+    //         nightOutput += nightNurses[nursesIndex].getFirstname() + " " + nightNurses[nursesIndex].getLastname() + ";";
+    //     }
+    //     m_writer.writeLine(nightOutput);
+    // }
 
 }
 
@@ -235,7 +270,7 @@ bool ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &
         }
 
         for (auto iterator{0}; iterator < shiftsCount.size(); ++iterator) {
-            if (shiftsCount[iterator] == 3) {
+            if (shiftsCount[iterator] == 3 && validateForBreaks(cloneDayShifts, cloneNightShifts, availableNurses[iterator], endDay)) {
                 for (auto iterator1{startDay}; iterator1 < endDay; ++iterator1) {
                     auto nursesOfDay =  cloneDayShifts[iterator1].getNurses();
                     auto nursesOfNight = cloneNightShifts[iterator1].getNurses();
@@ -377,5 +412,31 @@ bool ScheduleCreator::validateForHolidays(vector<Shift> &dayShifts, vector<Shift
         }
     }
     return true;
+}
+
+bool ScheduleCreator::validateForBreaks(vector<Shift> &dayShifts, vector<Shift> &nightShifts, Nurse selectedNurse, int lastDay) const
+{
+    for (auto day{0}; day < lastDay - 1; day++) {
+        if (shiftIncludes(dayShifts[day].getNurses(), selectedNurse) && shiftIncludes(nightShifts[day].getNurses(), selectedNurse)) {
+            return false;
+        }
+        if (shiftIncludes(nightShifts[day].getNurses(), selectedNurse) && shiftIncludes(dayShifts[day + 1].getNurses(), selectedNurse)) {
+            return false;
+        }
+    }
+    if (shiftIncludes(dayShifts[lastDay - 1].getNurses(), selectedNurse) && shiftIncludes(nightShifts[lastDay - 1].getNurses(), selectedNurse)) {
+        return false;
+    }
+    return true;
+}
+
+bool ScheduleCreator::shiftIncludes(vector<Nurse> nurses, Nurse target) const
+{
+    for (auto iterator{0}; iterator < nurses.size(); iterator++) {
+        if (nurses[iterator] == target) {
+            return true;
+        }
+    }
+    return false;
 }
 
