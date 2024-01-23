@@ -121,7 +121,11 @@ void ScheduleCreator::generatePlan(string outputFileName)
     }
     m_writer.writeLine("");
     for (auto iterator{0}; iterator < planDays; iterator++) {
-        m_writer.write("zmiana dzienna;");
+        m_writer.write(";");
+    }
+    m_writer.writeLine("");
+    for (auto iterator{0}; iterator < planDays; iterator++) {
+        m_writer.write("zmiana dzienna:;");
     }
     m_writer.writeLine("");
 
@@ -134,10 +138,13 @@ void ScheduleCreator::generatePlan(string outputFileName)
                 m_writer.write(m_dayShifts[iterator].getNurses()[line].getFirstname() + " " + m_dayShifts[iterator].getNurses()[line].getLastname() + ";");
                 isAnythingToPrint = true;
             } else if (line == m_dayShifts[iterator].getNurses().size()) {
-                m_writer.write("zmiana nocna;");
+                m_writer.write(";");
                 isAnythingToPrint = true;
-            } else if (line > m_dayShifts[iterator].getNurses().size() && line < m_dayShifts[iterator].getNurses().size() * 2 + 1) {
-                auto calculatedLine{line - (m_dayShifts[iterator].getNurses().size() + 1)};
+            } else if (line == m_dayShifts[iterator].getNurses().size() + 1) {
+                m_writer.write("zmiana nocna:;");
+                isAnythingToPrint = true;
+            } else if (line > m_dayShifts[iterator].getNurses().size() + 1 && line < m_dayShifts[iterator].getNurses().size() * 2 + 2) {
+                auto calculatedLine{line - (m_dayShifts[iterator].getNurses().size() + 2)};
                 if (m_nightShifts[iterator].getNurses().size() > calculatedLine) {
                     m_writer.write(m_nightShifts[iterator].getNurses()[calculatedLine].getFirstname() + " " + m_nightShifts[iterator].getNurses()[calculatedLine].getLastname());
                 }
@@ -226,7 +233,7 @@ bool ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &
                 auto chosenIndex{rand() % currentNurses.size()};
                 cloneDayShifts[iterator].addNurse(currentNurses[chosenIndex]);
                 currentNurses.erase(currentNurses.begin() + chosenIndex);
-                cloneDayAfterHours[iterator][personIndex] = rand() % 2;
+                cloneDayAfterHours[iterator][personIndex] = false;
             }
 
             currentNurses = availableNurses;
@@ -312,6 +319,7 @@ bool ScheduleCreator::generatePlanPart(vector<Shift> &dayShifts, vector<Shift> &
         }
 
         if ((allHours - reservedHours) < 3 || availableNurses.size() == 1) {
+            addAfterHours(dayShifts, nightShifts, dayAfterHours, nightAfterHours, startDay, endDay);
             return true;
         } else {
             ++resets;
@@ -438,5 +446,29 @@ bool ScheduleCreator::shiftIncludes(vector<Nurse> nurses, Nurse target) const
         }
     }
     return false;
+}
+
+void ScheduleCreator::addAfterHours(vector<Shift> &dayShifts, vector<Shift> &nightShifts, vector<vector<bool> > &dayAfterHours, vector<vector<bool> > &nightAfterHours, int startDay, int endDay)
+{
+    vector<Nurse> availableNurses = m_nurses;
+    for (auto iterator{startDay}; iterator < endDay; ++iterator) {
+        if (dayShifts[iterator].getNurses().size() < dayAfterHours[iterator].size()) {
+            for (auto iterator2{dayShifts[iterator].getNurses().size()}; iterator2 < dayAfterHours[iterator].size(); ++iterator2) {
+                auto selectedNurse{availableNurses[rand() % availableNurses.size()]};
+                selectedNurse.setLastname(selectedNurse.getLastname() + " (Nadgodziny)");
+                dayShifts[iterator].addNurse(selectedNurse);
+                dayAfterHours[iterator][iterator2] = true;
+            }
+        }
+
+        if (nightShifts[iterator].getNurses().size() < nightAfterHours[iterator].size()) {
+            for (auto iterator2{nightShifts[iterator].getNurses().size()}; iterator2 < nightAfterHours[iterator].size(); ++iterator2) {
+                auto selectedNurse{availableNurses[rand() % availableNurses.size()]};
+                selectedNurse.setLastname(selectedNurse.getLastname() + " (Nadgodziny)");
+                nightShifts[iterator].addNurse(selectedNurse);
+                nightAfterHours[iterator][iterator2] = true;
+            }
+        }
+    }
 }
 

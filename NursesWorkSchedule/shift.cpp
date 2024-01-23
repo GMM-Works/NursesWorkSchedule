@@ -8,7 +8,7 @@ Shift::~Shift()
 {
 }
 
-vector<Nurse> Shift::getNurses() const
+vector<Nurse> Shift::getNurses()
 {
     return m_nurses;
 }

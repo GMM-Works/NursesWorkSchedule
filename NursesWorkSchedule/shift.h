@@ -13,7 +13,7 @@ public:
     Shift();
     ~Shift();
 
-    vector<Nurse> getNurses() const;
+    vector<Nurse> getNurses();
     int indexOf(Nurse nurse) const;
     void addNurse(Nurse nurse);
     Nurse nurseAt(int index) const;
